@@ -4,6 +4,7 @@
 # Category: 
 # Author: 
 # License: 
+# Version: 
 # Notes: 
 
 {% set hash = '8b37844a53cab67f7ee9ef2299b94169ed6894ca31e4aec08d46727fc2c99848' %}
@@ -37,4 +38,13 @@ cpcwin-standalones-sysinternals-shortcut:
     - makedirs: True
     - require:
       - file: sysinternals
+      - archive: sysinternals-extract
+
+cpcwin-standalones-sysinternals-nirsoft-plugin:
+  file.managed:
+    - name: 'C:\standalone\sysinternals\sysinternals5.nlp'
+    - source: https://download.nirsoft.net/sysinternals5.nlp
+    - skip_verify: True
+    - makedirs: False
+    - watch:
       - archive: sysinternals-extract

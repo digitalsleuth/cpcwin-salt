@@ -13,6 +13,7 @@
 
 include:
   - cpcwin.packages.7zip
+  - cpcwin.standalones.sysinternals
 
 nirsoft-download:
   cmd.run:
@@ -42,3 +43,12 @@ cpcwin-standalones-nirsoft-shortcut:
     - makedirs: True
     - require:
       - cmd: nirsoft-extract
+
+cpcwin-standalones-nirsoft-cfg-edit:
+  file.append:
+    - name: 'C:\standalone\nirsoft\NirLauncher.cfg'
+    - text:
+      - [Package1]
+      - Filename=\standalone\sysinternals\sysinternals5.nlp
+    - require:
+      - sls: cpcwin.standalones.sysinternals

@@ -17,7 +17,7 @@ include:
 #  - cpcwin.packages.adobereader
   - cpcwin.packages.python3
   - cpcwin.packages.python2
-#  - cpcwin.packages.sublime-text
+  - cpcwin.packages.sublime-text
 #  - cpcwin.packages.passware-encryption-analyzer
 #  - cpcwin.packages.logparser
   - cpcwin.packages.active-disk-editor
@@ -62,7 +62,7 @@ cpcwin-packages:
 #      - sls: cpcwin.packages.adobereader
       - sls: cpcwin.packages.python3
       - sls: cpcwin.packages.python2
-#      - sls: cpcwin.packages.sublime-text
+      - sls: cpcwin.packages.sublime-text
 #      - sls: cpcwin.packages.passware-encryption-analyzer
 #      - sls: cpcwin.packages.logparser
       - sls: cpcwin.packages.active-disk-editor
