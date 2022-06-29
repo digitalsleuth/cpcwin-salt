@@ -1,0 +1,2 @@
+elcomsoft-efdd:
+  pkg.installed
