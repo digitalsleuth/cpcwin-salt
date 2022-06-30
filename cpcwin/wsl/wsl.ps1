@@ -6,16 +6,20 @@ if (-Not $runningUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     Read-Host "Press any key to continue"
 }
 if (-Not (Test-Path $wslLogFile)) {
-        $repoResults=$wslResults=$repoFailures=$wslFailures=$errors=$null
+    $wslResults=$wslFailures=$errors=$null
 	} else {
 $wslErrorLog = "C:\cpcwin-wsl-errors.log"
-$repoResults = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -First 1 | ForEach-Object{"[+] " + $_.Line; "[!] " + $_.Context.PostContext} | Out-String).Trim()
-$repoFailures = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -First 1 | ForEach-Object{$_.Context.PostContext})
-if ($repoFailures -ne $null) {$repoFailures = $repoFailures.split(':')[1].Trim() }
-$wslResults = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Skip 1 -First 1 | ForEach-Object{"[+] " + $_.Line; "[!] " + $_.Context.PostContext} | Out-String).Trim()
-$wslFailures = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Skip 1 -First 1 | ForEach-Object{$_.Context.PostContext})
+$wslResults = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Last 1 | ForEach-Object{"[+] " + $_.Line; "[!] " + $_.Context.PostContext} | Out-String).Trim()
+$wslFailures = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Last 1 | ForEach-Object{$_.Context.PostContext})
 if ($wslFailures -ne $null) {$wslFailures = $wslFailures.split(':')[1].Trim() }
 $errors = (Select-String -Path $wslLogFile -Pattern '          ID:' -Context 0,6 | ForEach-Object{$_.Line; $_.Context.DisplayPostContext + "`r-------------"})
+}
+if (-Not (Test-Path $repoLogFile)) {
+    $repoResults=$repoFailures=$null
+} else {
+$repoResults = (Select-String -Path $repoLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Last 1 | ForEach-Object{"[+] " + $_.Line; "[!] " + $_.Context.PostContext} | Out-String).Trim()
+$repoFailures = (Select-String -Path $repoLogFile -Pattern 'Succeeded:' -Context 1 | Select-Object -Last 1 | ForEach-Object{$_.Context.PostContext})
+if ($repoFailures -ne $null) {$repoFailures = $repoFailures.split(':')[1].Trim() }
 }
 Write-Host "[+] Downloading CPC-WIN template and installing SIFT & REMnux" -ForegroundColor Green
 Start-Process -Wait -FilePath $filePath -ArgumentList ($saltArgs) | Out-Null
