@@ -34,6 +34,7 @@ include:
   - cpcwin.standalones.x-ways
   - cpcwin.standalones.caine
   - cpcwin.standalones.rufus
+  - cpcwin.standalones.bitrecover-eml-viewer
 
 cpcwin-standalones:
   test.nop:
@@ -73,3 +74,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.x-ways
       - sls: cpcwin.standalones.caine
       - sls: cpcwin.standalones.rufus
+      - sls: cpcwin.standalones.bitrecover-eml-viewer
