@@ -15,7 +15,7 @@ wsl-config-version:
 wsl-get-template:
   file.managed:
     - name: 'C:\salt\tempdownload\CPC-WIN-20.04.tar'
-    - source: https://sourceforge.net/projects/cpcwin/files/wsl/WIN-FOR-20.04.tar/download
+    - source: https://sourceforge.net/projects/winfor/files/wsl/WIN-FOR-20.04.tar/download
     - source_hash: sha256={{ hash }}
     - makedirs: True
 
