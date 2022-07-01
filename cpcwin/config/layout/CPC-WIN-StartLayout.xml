@@ -52,6 +52,7 @@
         <start:Group Name="Terminals">
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="0" DesktopApplicationID="{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\cmd.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="0" DesktopApplicationID="{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\WindowsPowerShell\v1.0\powershell.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\wsl.exe" />
         </start:Group>
         <start:Group Name="Utilities">
           <start:DesktopApplicationTile Size="1x1" Column="4" Row="0" DesktopApplicationID="C:\standalone\fastcopy\FastCopy.exe" />
