@@ -40,6 +40,7 @@ include:
   - cpcwin.packages.vlc
   - cpcwin.packages.klite-codec-mega
   - cpcwin.packages.elcomsoft-efdd
+  - cpcwin.packages.tableau-imager
 
 cpcwin-packages:
   test.nop:
@@ -85,3 +86,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.vlc
       - sls: cpcwin.packages.klite-codec-mega
       - sls: cpcwin.packages.elcomsoft-efdd
+      - sls: cpcwin.packages.tableau-imager
