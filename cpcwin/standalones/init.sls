@@ -16,7 +16,6 @@ include:
 #  - cpcwin.standalones.logparser-studio
 #  - cpcwin.standalones.kansa
 #  - cpcwin.standalones.logviewer2
-#  - cpcwin.standalones.officemalscanner
   - cpcwin.standalones.srum-dump2
   - cpcwin.standalones.pilfer
   - cpcwin.standalones.vssmount
@@ -56,7 +55,6 @@ cpcwin-standalones:
 #      - sls: cpcwin.standalones.logparser-studio
 #      - sls: cpcwin.standalones.kansa
 #      - sls: cpcwin.standalones.logviewer2
-#      - sls: cpcwin.standalones.officemalscanner
       - sls: cpcwin.standalones.srum-dump2
       - sls: cpcwin.standalones.pilfer
       - sls: cpcwin.standalones.vssmount
