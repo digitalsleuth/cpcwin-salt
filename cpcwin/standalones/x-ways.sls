@@ -1,4 +1,4 @@
-{% set version = "205" %}
+{% set version = "206" %}
 {% set auth_token = "TOKENPLACEHOLDER" %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set xwhash = "ecae2b3decf09bf75fa17ade49917a14b1f5da4dca9bd4953e6e2ca084944d45" %}
@@ -112,6 +112,14 @@ xways-winhex64-binary:
   file.copy:
     - name: 'C:\xwf\winhex64.exe'
     - source: 'C:\xwf\xwforensics64.exe'
+    - require:
+      - archive: xways-extract
+
+xways-file-type-categories-user:
+  file.managed:
+    - name: 'C:\xwf\File Type Categories User.txt'
+    - source: salt://cpcwin/files/File_Type_Categories_User.txt
+    - skip_verify: True
     - require:
       - archive: xways-extract
 
