@@ -34,7 +34,7 @@ zimmerman-env-vars:
   win_path.exists:
     - names:
       - 'C:\standalone\zimmerman\'
-      - 'C:\standalone\zimmerman\EvtxExplorer\'
+      - 'C:\standalone\zimmerman\EvtxECmd\'
       - 'C:\standalone\zimmerman\RegistryExplorer\'
       - 'C:\standalone\zimmerman\ShellBagsExplorer\'
       - 'C:\standalone\zimmerman\SQLECmd\'
