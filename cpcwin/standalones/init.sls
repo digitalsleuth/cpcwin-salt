@@ -8,14 +8,14 @@ include:
   - cpcwin.standalones.regripper
   - cpcwin.standalones.usb-write-blocker
 #  - cpcwin.standalones.ntfs-log-tracker
-#  - cpcwin.standalones.logfileparser
-#  - cpcwin.standalones.kape
+  - cpcwin.standalones.logfileparser
+  - cpcwin.standalones.kape
   - cpcwin.standalones.sqlitestudio
   - cpcwin.standalones.autorunner
   - cpcwin.standalones.sleuthkit
-#  - cpcwin.standalones.logparser-studio
+  - cpcwin.standalones.logparser-studio
 #  - cpcwin.standalones.kansa
-#  - cpcwin.standalones.logviewer2
+  - cpcwin.standalones.logviewer2
   - cpcwin.standalones.srum-dump2
   - cpcwin.standalones.pilfer
   - cpcwin.standalones.vssmount
@@ -47,14 +47,14 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.regripper
       - sls: cpcwin.standalones.usb-write-blocker
 #      - sls: cpcwin.standalones.ntfs-log-tracker
-#      - sls: cpcwin.standalones.logfileparser
-#      - sls: cpcwin.standalones.kape
+      - sls: cpcwin.standalones.logfileparser
+      - sls: cpcwin.standalones.kape
       - sls: cpcwin.standalones.sqlitestudio
       - sls: cpcwin.standalones.autorunner
       - sls: cpcwin.standalones.sleuthkit
-#      - sls: cpcwin.standalones.logparser-studio
+      - sls: cpcwin.standalones.logparser-studio
 #      - sls: cpcwin.standalones.kansa
-#      - sls: cpcwin.standalones.logviewer2
+      - sls: cpcwin.standalones.logviewer2
       - sls: cpcwin.standalones.srum-dump2
       - sls: cpcwin.standalones.pilfer
       - sls: cpcwin.standalones.vssmount

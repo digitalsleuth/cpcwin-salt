@@ -7,7 +7,7 @@ include:
   - cpcwin.packages.chrome
   - cpcwin.packages.registry-viewer
   - cpcwin.packages.ftk-imager
-#  - cpcwin.packages.httplogbrowser
+  - cpcwin.packages.httplogbrowser
   - cpcwin.packages.db-browser-sqlite
   - cpcwin.packages.bulk-extractor
 #  - cpcwin.packages.vs-community-2022
@@ -19,11 +19,11 @@ include:
   - cpcwin.packages.python2
   - cpcwin.packages.sublime-text
 #  - cpcwin.packages.passware-encryption-analyzer
-#  - cpcwin.packages.logparser
+  - cpcwin.packages.logparser
   - cpcwin.packages.active-disk-editor
   - cpcwin.packages.kernel-pst-viewer  
   - cpcwin.packages.kernel-ost-viewer
-#  - cpcwin.packages.kernel-edb-viewer
+  - cpcwin.packages.kernel-edb-viewer
 #  - cpcwin.packages.putty
 #  - cpcwin.packages.wireshark
   - cpcwin.packages.strawberryperl
@@ -53,7 +53,7 @@ cpcwin-packages:
       - sls: cpcwin.packages.chrome
       - sls: cpcwin.packages.registry-viewer
       - sls: cpcwin.packages.ftk-imager
-#      - sls: cpcwin.packages.httplogbrowser
+      - sls: cpcwin.packages.httplogbrowser
       - sls: cpcwin.packages.db-browser-sqlite
       - sls: cpcwin.packages.bulk-extractor
 #      - sls: cpcwin.packages.vs-community-2022
@@ -65,11 +65,11 @@ cpcwin-packages:
       - sls: cpcwin.packages.python2
       - sls: cpcwin.packages.sublime-text
 #      - sls: cpcwin.packages.passware-encryption-analyzer
-#      - sls: cpcwin.packages.logparser
+      - sls: cpcwin.packages.logparser
       - sls: cpcwin.packages.active-disk-editor
       - sls: cpcwin.packages.kernel-pst-viewer
       - sls: cpcwin.packages.kernel-ost-viewer
-#      - sls: cpcwin.packages.kernel-edb-viewer
+      - sls: cpcwin.packages.kernel-edb-viewer
 #      - sls: cpcwin.packages.putty
 #      - sls: cpcwin.packages.wireshark
       - sls: cpcwin.packages.strawberryperl
