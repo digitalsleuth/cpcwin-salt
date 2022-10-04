@@ -81,6 +81,10 @@
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="1" DesktopApplicationID="C:\standalone\zimmerman\TimelineExplorer\TimelineExplorer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\AccessData\Registry Viewer\RegistryViewer.exe" />
         </start:Group>
+        <start:Group Name="WriteBlockers">
+          <start:DesktopApplicationTile Size="1x1" Column="0" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\CDSG\WriteBlocking Validation Utility\WbValUtil.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="1" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Tableau\Tableau Firmware Update\tabup.exe" />
+        </start:Group>
       </defaultlayout:StartLayout>
     </StartLayoutCollection>
   </DefaultLayoutOverride>
