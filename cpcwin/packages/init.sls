@@ -41,7 +41,6 @@ include:
   - cpcwin.packages.klite-codec-mega
   - cpcwin.packages.elcomsoft-efdd
   - cpcwin.packages.tableau-imager
-  - cpcwin.packages.tableau-firmware-update
   - cpcwin.packages.wiebetech-writeblocking-validation-utility
 
 cpcwin-packages:
@@ -89,5 +88,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.klite-codec-mega
       - sls: cpcwin.packages.elcomsoft-efdd
       - sls: cpcwin.packages.tableau-imager
-      - sls: cpcwin.packages.tableau-firmware-update
       - sls: cpcwin.packages.wiebetech-writeblocking-validation-utility
