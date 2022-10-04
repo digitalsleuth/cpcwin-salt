@@ -27,7 +27,7 @@ cpcwin-theme-set-wallpaper-center:
     - name: HKEY_CURRENT_USER\Control Panel\Desktop
     - vname: WallpaperStyle
     - vtype: REG_SZ
-    - vdata: 6
+    - vdata: 10
 
 cpcwin-theme-set-wallpaper-no-tile:
   reg.present:
