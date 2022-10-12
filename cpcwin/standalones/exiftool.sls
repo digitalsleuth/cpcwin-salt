@@ -33,6 +33,18 @@ exiftool-rename:
     - require:
       - archive: exiftool-extract
 
+exiftool-kml-fmt:
+  file.managed:
+    - name: 'C:\standalone\exiftool\kml.fmt'
+    - source: salt://cpcwin/files/kml.fmt
+    - makedirs: True
+
+exiftool-kml-batch:
+  file.managed:
+    - name: 'C:\standalone\exiftool\EXIF_Tool.bat'
+    - source: salt://cpcwin/files/EXIF_Tool.bat
+    - makedirs: True
+
 exiftool-env-vars:
   win_path.exists:
     - name: 'C:\standalone\exiftool\'

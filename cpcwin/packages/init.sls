@@ -27,7 +27,7 @@ include:
 #  - cpcwin.packages.putty
 #  - cpcwin.packages.wireshark
   - cpcwin.packages.strawberryperl
-#  - cpcwin.packages.cerbero-suite
+  - cpcwin.packages.cerbero-suite
 #  - cpcwin.packages.fiddler
 #  - cpcwin.packages.mdf-viewer
   - cpcwin.packages.free-hex-editor-neo
@@ -42,6 +42,8 @@ include:
   - cpcwin.packages.elcomsoft-efdd
   - cpcwin.packages.tableau-imager
   - cpcwin.packages.wiebetech-writeblocking-validation-utility
+  - cpcwin.packages.veracrypt
+  - cpcwin.packages.bulkrenameutility
 
 cpcwin-packages:
   test.nop:
@@ -74,7 +76,7 @@ cpcwin-packages:
 #      - sls: cpcwin.packages.putty
 #      - sls: cpcwin.packages.wireshark
       - sls: cpcwin.packages.strawberryperl
-#      - sls: cpcwin.packages.cerbero-suite
+      - sls: cpcwin.packages.cerbero-suite
 #      - sls: cpcwin.packages.fiddler
 #      - sls: cpcwin.packages.mdf-viewer
       - sls: cpcwin.packages.free-hex-editor-neo
@@ -89,3 +91,5 @@ cpcwin-packages:
       - sls: cpcwin.packages.elcomsoft-efdd
       - sls: cpcwin.packages.tableau-imager
       - sls: cpcwin.packages.wiebetech-writeblocking-validation-utility
+      - sls: cpcwin.packages.veracrypt
+      - sls: cpcwin.packages.bulkrenameutility

@@ -1,0 +1,2 @@
+bulkrenameutility:
+  pkg.installed

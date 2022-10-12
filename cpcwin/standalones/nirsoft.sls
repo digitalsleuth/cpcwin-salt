@@ -10,10 +10,13 @@
 {% set version = '1.23.61' %}
 {% set hash = 'd55a477d0e6d9d5de6e6001a120f9801a04429d140379b0253b5e53d6647530b' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+{% set nlps = ['eztools.nlp', 'ntcore.nlp', 'mitec.nlp', 'CMPFOR-Custom.nlp', 'sysinternals5.nlp'] %}
 
 include:
   - cpcwin.packages.7zip
   - cpcwin.standalones.sysinternals
+  - cpcwin.standalones.mitec
+  - cpcwin.standalones.ntcore
 
 nirsoft-download:
   cmd.run:
@@ -44,11 +47,22 @@ cpcwin-standalones-nirsoft-shortcut:
     - require:
       - cmd: nirsoft-extract
 
-cpcwin-standalones-nirsoft-cfg-edit:
-  file.append:
+cpcwin-standalones-nirsoft-cfg-replace:
+  file.managed:
     - name: 'C:\standalone\nirsoft\NirLauncher.cfg'
-    - text:
-      - [Package1]
-      - Filename=\standalone\sysinternals\sysinternals5.nlp
+    - source: salt://cpcwin/files/NirLauncher.cfg
+    - replace: True
     - require:
       - sls: cpcwin.standalones.sysinternals
+      - sls: cpcwin.standalones.mitec
+      - sls: cpcwin.standalones.ntcore
+
+{% for nlp in nlps %}
+
+cpcwin-standalones-nirsoft-{{ nlp }}:
+  file.managed:
+    - name: 'C:\standalone\nirsoft\{{ nlp }}'
+    - source: salt://cpcwin/files/{{ nlp }}
+    - makedirs: True
+
+{% endfor %}

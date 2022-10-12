@@ -1,0 +1,2 @@
+veracrypt:
+  pkg.installed

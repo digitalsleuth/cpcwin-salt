@@ -34,6 +34,13 @@ include:
   - cpcwin.standalones.caine
   - cpcwin.standalones.rufus
   - cpcwin.standalones.bitrecover-eml-viewer
+  - cpcwin.standalones.mitec
+  - cpcwin.standalones.ntcore
+  - cpcwin.standalones.exiftool
+  - cpcwin.standalones.glossary-generator
+  - cpcwin.standalones.hex2guid
+  - cpcwin.standalones.usbdetective
+  - cpcwin.standalones.bulkrenameutility-portable
 
 cpcwin-standalones:
   test.nop:
@@ -73,3 +80,10 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.caine
       - sls: cpcwin.standalones.rufus
       - sls: cpcwin.standalones.bitrecover-eml-viewer
+      - sls: cpcwin.standalones.mitec
+      - sls: cpcwin.standalones.ntcore
+      - sls: cpcwin.standalones.exiftool
+      - sls: cpcwin.standalones.glossary-generator
+      - sls: cpcwin.standalones.hex2guid
+      - sls: cpcwin.standalones.usbdetective
+      - sls: cpcwin.standalones.bulkrenameutility-portable

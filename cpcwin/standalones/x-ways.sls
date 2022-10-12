@@ -66,13 +66,13 @@ xways-manual-download:
 
 xways-extract:
   archive.extracted:
-    - name: 'C:\xwf\'
+    - name: 'C:\X-Ways{{ version }}\'
     - source: 'C:\salt\tempdownload\xw_forensics{{ version }}.zip'
     - enforce_toplevel: False
 
 xways-viewer-extract:
   archive.extracted:
-    - name: 'C:\xwf\'
+    - name: 'C:\X-Ways{{ version }}\'
     - source: 'C:\salt\tempdownload\xw_viewer.zip'
     - enforce_toplevel: False
     - require:
@@ -80,7 +80,7 @@ xways-viewer-extract:
 
 xways-tesseract-extract:
   archive.extracted:
-    - name: 'C:\xwf\'
+    - name: 'C:\X-Ways{{ version }}\'
     - source: 'C:\salt\tempdownload\Tesseract.zip'
     - enforce_toplevel: False
     - require:
@@ -88,7 +88,7 @@ xways-tesseract-extract:
 
 xways-mplayer-extract:
   archive.extracted:
-    - name: 'C:\xwf\'
+    - name: 'C:\X-Ways{{ version }}\'
     - source: 'C:\salt\tempdownload\MPlayer_2018_x64.zip'
     - enforce_toplevel: False
     - require:
@@ -96,28 +96,28 @@ xways-mplayer-extract:
 
 xways-manual-copy:
   file.managed:
-    - name: 'C:\xwf\manual.pdf'
+    - name: 'C:\X-Ways{{ version }}\manual.pdf'
     - source: 'C:\salt\tempdownload\manual.pdf'
     - require:
       - archive: xways-extract
 
 xways-winhex-binary:
   file.copy:
-    - name: 'C:\xwf\winhex.exe'
-    - source: 'C:\xwf\xwforensics.exe'
+    - name: 'C:\X-Ways{{ version }}\winhex.exe'
+    - source: 'C:\X-Ways{{ version }}\xwforensics.exe'
     - require:
       - archive: xways-extract
 
 xways-winhex64-binary:
   file.copy:
-    - name: 'C:\xwf\winhex64.exe'
-    - source: 'C:\xwf\xwforensics64.exe'
+    - name: 'C:\X-Ways{{ version }}\winhex64.exe'
+    - source: 'C:\X-Ways{{ version }}\xwforensics64.exe'
     - require:
       - archive: xways-extract
 
 xways-file-type-categories-user:
   file.managed:
-    - name: 'C:\xwf\File Type Categories User.txt'
+    - name: 'C:\X-Ways{{ version }}\File Type Categories User.txt'
     - source: salt://cpcwin/files/File_Type_Categories_User.txt
     - skip_verify: True
     - require:
@@ -126,9 +126,9 @@ xways-file-type-categories-user:
 cpcwin-standalones-xways-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\X-Ways.lnk'
-    - target: 'C:\xwf\xwforensics64.exe'
+    - target: 'C:\X-Ways{{ version }}\xwforensics64.exe'
     - force: True
-    - working_dir: 'C:\xwf\'
+    - working_dir: 'C:\X-Ways{{ version }}\'
     - makedirs: True
     - require:
       - archive: xways-extract
@@ -136,9 +136,9 @@ cpcwin-standalones-xways-shortcut:
 cpcwin-standalones-winhex-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WinHex.lnk'
-    - target: 'C:\xwf\winhex64.exe'
+    - target: 'C:\X-Ways{{ version }}\winhex64.exe'
     - force: True
-    - working_dir: 'C:\xwf\'
+    - working_dir: 'C:\X-Ways{{ version }}\'
     - makedirs: True
     - require:
       - archive: xways-extract

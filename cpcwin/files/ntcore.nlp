@@ -1,0 +1,100 @@
+[General]
+; All utilites list: http://www.ntcore.com/utilities.php
+Name=NTCore Utilities
+GroupCount=4
+SoftwareCount=8
+
+
+[Group0]
+Name=System Utilities
+
+[Group1]
+Name=PE Utilities
+
+[Group2]
+Name=Other Utilities
+
+[Group3]
+Name=All Utilities
+ShowAll=1
+
+
+[Software0]
+exe=C:\standalone\ntcore\Filtermon\x86\FilterMon.exe
+help=
+url=http://www.ntcore.com/filtermon.php
+exe64=C:\standalone\ntcore\Filtermon\x64\FilterMon.exe
+group=0
+AppName=Filter Monitor
+ShortDesc=This utility can list kernel mode filters and also unregister them
+LongDesc=This utility can list kernel mode filters and also unregister them. Monitored filters are, for instance, registry filters, create process and thread notifications. FilterMon comes both for x64 and x86 and it should work on all Windows systems from Vista RTM to Windows 7 RTM. I can't guarantee that it will work on future versions of Windows as it relies heavily on system internals.
+
+[Software1]
+exe=C:\standalone\ntcore\DriverList\DriverList_x86.exe
+help=
+url=http://www.ntcore.com/drvlist.php
+exe64=C:\standalone\ntcore\DriverList\DriverList_x64.exe
+group=0
+AppName=Driver List
+ShortDesc=Very small utility which lists the loaded drivers
+LongDesc=Very small utility which lists the loaded drivers. The utility is 64-bit compatible and can generate a report file from the list.
+
+[Software2]
+exe=C:\standalone\ntcore\DynLogger_x86\DynLogger.exe
+help=
+url=http://www.ntcore.com/dynlogger.php
+exe64=C:\standalone\ntcore\DynLogger_x64\DynLogger.exe
+group=1
+AppName=DynLogger
+ShortDesc=Logs all dynamically retrieved functions by reporting the module name and the requested function
+LongDesc=DynLogger logs all dynamically retrieved functions by reporting the module name and the requested function. It can come very handy when one wants to know a "hidden" function used by an application. I recycled the code of a bigger project to write this little application. It's a very small utility, but it might be of use after all. It was tested on XP and Vista, both x86 and x64. It works for .NET application as well. Just start the logging process, the log will be saved after you quit the monitored application.
+
+[Software3]
+exe=C:\Program Files\NTCore\Explorer Suite\PE Detective.exe
+help=
+url=http://www.ntcore.com/pedetective.php
+exe64=
+group=1
+AppName=PE Detective
+ShortDesc=A freeware PE identifier
+LongDesc=A freeware PE identifier. This tool was originally designed to be part of the Explorer Suite II, but it can be downloaded separately as well. The PE Detective can scan single PE files or entire directories (also recursevely) and generate complete reports. The PE Detective is deployed along with the Signature Explorer, which is an advanced signature manager to check collisions, handle, update and retrieve signatures
+
+[Software4]
+exe=C:\standalone\ntcore\WIM_Installer\WIM Installer.exe
+help=
+url=https://ntcore.com/files/WIM_Installer.zip
+exe64=
+group=0
+AppName=WIM Installer
+ShortDesc=In a extremely easy way setups based on wim images
+LongDesc=A little utility created to handle from a graphical interface and in a extremely easy way setups based on wim images. Regardeless if they have been released by microsoft or not.
+
+[Software5]
+exe=C:\standalone\ntcore\NETUnpack\NETUnpack.exe
+help=
+url=http://www.ntcore.com/netunpack.php
+exe64=C:\standalone\ntcore\NETUnpack_x64\NETUnpack.exe
+group=1
+AppName=.NET Generic Unpacker
+ShortDesc=Dump .NET packed applications
+LongDesc=This is a program to dump .NET packed applications. Of course no serious .NET protection relies on packing. In fact, this software shows how easily you can unpack a protected assemly. This .NET Generic Unpacker was written in a couple of hours and despite of the fact that it's very simple, it might turn useful having it: otherwise you have to unpack manually, which is also very easy.
+
+[Software6]
+exe=C:\Program Files\NTCore\Explorer Suite\CFF Explorer.exe
+help=
+url=http://www.ntcore.com/exsuite.php
+exe64=
+group=1
+AppName=CFF Explorer
+ShortDesc=CFF Explorer was designed to make PE editing as easy as possible
+LongDesc=The CFF Explorer was designed to make PE editing as easy as possible, but without losing sight on the portable executable's internal structure. This application includes a series of tools which might help not only reverse engineers but also programmers. It offers a multi-file environment and a switchable interface. Also, it's the first PE editor with full support for the .NET file format. With this tool you can easily edit metadata's fields and flags. If you're programming something that has to do with .NET metadata, you will need this tool. The resource viewer supports .NET image formats like icons, bitmaps, pngs. You'll be able to analyze .NET files without having to install the .NET framework, this tool has its own functions to access the .NET format. 
+
+[Software7]
+exe=C:\Program Files\NTCore\Explorer Suite\Signature Explorer.exe
+help=
+url=http://www.ntcore.com/pedetective.php
+exe64=
+group=1
+AppName=Signature Explorer
+ShortDesc=To use with PE Detective
+LongDesc=The PE Detective is deployed along with the Signature Explorer, which is an advanced signature manager to check collisions, handle, update and retrieve signatures.
