@@ -4,7 +4,7 @@ include:
 #  - cpcwin.installers.mobaxterm
 #  - cpcwin.installers.data-dump
   - cpcwin.installers.hxd
-#  - cpcwin.installers.redline
+  - cpcwin.installers.redline
   - cpcwin.installers.systools-pst-viewer
   - cpcwin.installers.irfanview-plugins
 #  - cpcwin.installers.fec
@@ -12,7 +12,7 @@ include:
   - cpcwin.installers.nuix-evidence-mover
   - cpcwin.installers.fastcopy
   - cpcwin.installers.jre8
-  - cpcwin.installers.tableau-firmware-update
+#  - cpcwin.installers.tableau-firmware-update
   
 cpcwin-installers:
   test.nop:
@@ -22,7 +22,7 @@ cpcwin-installers:
 #      - sls: cpcwin.installers.mobaxterm
 #      - sls: cpcwin.installers.data-dump
       - sls: cpcwin.installers.hxd
-#      - sls: cpcwin.installers.redline
+      - sls: cpcwin.installers.redline
       - sls: cpcwin.installers.systools-pst-viewer
       - sls: cpcwin.installers.irfanview-plugins
 #      - sls: cpcwin.installers.fec
@@ -30,4 +30,4 @@ cpcwin-installers:
       - sls: cpcwin.installers.nuix-evidence-mover
       - sls: cpcwin.installers.fastcopy
       - sls: cpcwin.installers.jre8
-      - sls: cpcwin.installers.tableau-firmware-update
+#      - sls: cpcwin.installers.tableau-firmware-update

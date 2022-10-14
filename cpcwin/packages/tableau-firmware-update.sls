@@ -6,14 +6,21 @@
 {% set home = "C:\\Users\\" + user %}
 {% endif %}
 
+tableau-certificate-install:
+  certutil.add_store:
+    - name: salt://cpcwin/files/tableau.cer
+    - store: TrustedPublisher
 
 tableau-firmware-update:
-  pkg.installed
+  pkg.installed:
+    - require:
+      - certutil: tableau-certificate-install
 
 tableau-firmware-update-icon-del:
   file.absent:
     - names:
       - '{{ home }}\Desktop\Tableau Firmware Update.lnk'
+      - 'C:\Users\Public\Desktop\Tableau Firmware Update.lnk'
     - require:
       - pkg: tableau-firmware-update
       - user: cpcwin-user-{{ user }}

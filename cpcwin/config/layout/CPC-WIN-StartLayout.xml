@@ -12,6 +12,7 @@
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="1" DesktopApplicationID="C:\X-Ways206\xwforensics64.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="4" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\Magnet Forensics\Magnet AXIOM\AXIOM Process\AXIOMProcess.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\Magnet Forensics\Magnet AXIOM\AXIOM Examine\AXIOMExamine.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="2" Row="1" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Redline\Redline.exe" />
         </start:Group>
         <start:Group Name="Browsers">
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="MSEdge" />

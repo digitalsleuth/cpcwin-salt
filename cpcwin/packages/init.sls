@@ -44,6 +44,7 @@ include:
   - cpcwin.packages.wiebetech-writeblocking-validation-utility
   - cpcwin.packages.veracrypt
   - cpcwin.packages.bulkrenameutility
+  - cpcwin.packages.tableau-firmware-update
 
 cpcwin-packages:
   test.nop:
@@ -93,3 +94,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.wiebetech-writeblocking-validation-utility
       - sls: cpcwin.packages.veracrypt
       - sls: cpcwin.packages.bulkrenameutility
+      - sls: cpcwin.packages.tableau-firmware-update
