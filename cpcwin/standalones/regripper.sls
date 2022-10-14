@@ -10,7 +10,6 @@
 
 include:
   - cpcwin.packages.git
-  - cpcwin.packages.strawberryperl
 
 cpcwin-standalones-regripper:
   git.latest:
@@ -21,12 +20,6 @@ cpcwin-standalones-regripper:
     - force_reset: True
     - require:
       - sls: cpcwin.packages.git
-
-cpcwin-standalones-regripper-requirements:
-  cmd.run:
-    - name: 'C:\Strawberry\perl\bin\cpanm install Parse::Win32Registry'
-    - require:
-      - sls: cpcwin.packages.strawberryperl
 
 regripper-env-vars:
   win_path.exists:

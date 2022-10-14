@@ -1,14 +1,14 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
+# Name: Zimmerman Tools
+# Website: https://ericzimmerman.github.io
+# Description: Suite of Windows Forensic Analysis tools
+# Category: Windows Analysis
+# Author: Eric Zimmerman
 # License: 
 # Notes: 
 
 {% set hash = '7864ce0ab57e3831bad24f56abc1c9c6796a552091d2f49262e66565e66c0447' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
-{% set applications = ['EZViewer','Hasher','JumpListExplorer','MFTExplorer','RegistryExplorer','SDBExplorer','ShellBagsExplorer','TimelineExplorer'] %}
+{% set applications = ['EZViewer','JumpListExplorer','MFTExplorer','RegistryExplorer','SDBExplorer','ShellBagsExplorer','TimelineExplorer'] %}
 
 zimmerman-tools:
   file.managed:
@@ -33,21 +33,32 @@ zimmerman-tools-download:
 zimmerman-env-vars:
   win_path.exists:
     - names:
-      - 'C:\standalone\zimmerman\'
-      - 'C:\standalone\zimmerman\EvtxECmd\'
-      - 'C:\standalone\zimmerman\RegistryExplorer\'
-      - 'C:\standalone\zimmerman\ShellBagsExplorer\'
-      - 'C:\standalone\zimmerman\SQLECmd\'
-      - 'C:\standalone\zimmerman\iisGeolocate\'
+      - 'C:\standalone\zimmerman\net6\'
+      - 'C:\standalone\zimmerman\net6\EvtxECmd\'
+      - 'C:\standalone\zimmerman\net6\RECmd\'
+      - 'C:\standalone\zimmerman\net6\RegistryExplorer\'
+      - 'C:\standalone\zimmerman\net6\ShellBagsExplorer\'
+      - 'C:\standalone\zimmerman\net6\SQLECmd\'
+      - 'C:\standalone\zimmerman\net6\iisGeolocate\'
 
 {% for application in applications %}
 zimmerman-{{ application }}-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\{{ application }}.lnk'
-    - target: 'C:\standalone\zimmerman\{{ application }}\{{ application }}.exe'
+    - target: 'C:\standalone\zimmerman\net6\{{ application }}\{{ application }}.exe'
     - force: True
     - working_dir: 'C:\standalone\zimmerman\{{ application }}\'
     - makedirs: True
     - require:
       - cmd: zimmerman-tools-download
 {% endfor %}
+
+zimmerman-hasher-shortcut:
+  file.shortcut:
+    - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\Hasher.lnk'
+    - target: 'C:\standalone\zimmerman\Hasher\Hasher.exe'
+    - force: True
+    - working_dir: 'C:\standalone\zimmerman\Hasher\'
+    - makedirs: True
+    - require:
+      - cmd: zimmerman-tools-download
