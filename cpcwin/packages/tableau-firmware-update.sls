@@ -6,10 +6,21 @@
 {% set home = "C:\\Users\\" + user %}
 {% endif %}
 
+include:
+  - cpcwin.config.user
+
+tableau-certificate-copy:
+  file.managed:
+    - name: 'C:\salt\tempdownload\tableau.cer'
+    - source: salt://cpcwin/files/tableau.cer
+    - makedirs: True
+
 tableau-certificate-install:
   certutil.add_store:
-    - name: salt://cpcwin/files/tableau.cer
+    - name: 'C:\salt\tempdownload\tableau.cer'
     - store: TrustedPublisher
+    - require:
+      - file: tableau-certificate-copy
 
 tableau-firmware-update:
   pkg.installed:

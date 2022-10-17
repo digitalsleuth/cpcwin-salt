@@ -41,4 +41,31 @@ cpcwin-theme-update-wallpaper:
     - name: 'RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True'
     - shell: cmd
 
+nimi-setup:
+  file.managed:
+    - name: 'C:\salt\tempdownload\nimi.zip'
+    - source: salt://cpcwin/files/nimi.zip
+    - makedirs: True
 
+nimi-extract:
+  archive.extracted:
+    - name: 'C:\standalone\nimi\'
+    - source: 'C:\salt\tempdownload\nimi.zip'
+    - enforce_toplevel: False
+    - require:
+      - file: nimi-setup
+
+nimi-autostart:
+  reg.present:
+    - name: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    - vname: NimiPlaces
+    - vtype: REG_SZ
+    - vdata: '"C:\standalone\nimi\nimi.cmd"'
+
+nimi-run:
+  cmd.run:
+    - name: '"Nimi Places.exe"'
+    - cwd: 'C:\standalone\nimi\'
+    - bg: True
+    - require:
+      - reg: nimi-autostart
