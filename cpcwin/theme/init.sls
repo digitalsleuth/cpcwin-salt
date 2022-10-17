@@ -69,3 +69,9 @@ nimi-run:
     - bg: True
     - require:
       - reg: nimi-autostart
+
+cleanup-nimi:
+  file.absent:
+    - name: 'C:\salt'
+    - require:
+      - cmd: nimi-run
