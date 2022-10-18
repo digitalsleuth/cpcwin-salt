@@ -1,4 +1,4 @@
-{% set zips = ['FTK-Imager-3-2-0-0-portable.zip', 'searchkit.zip'] %}
+{% set zips = ['FTK-Imager-4-7-0-19-portable.zip', 'FTK-Imager-3-2-0-0-portable.zip', 'searchkit.zip'] %}
 
 {% for zip in zips %}
 
