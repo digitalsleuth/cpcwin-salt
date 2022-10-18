@@ -68,6 +68,7 @@
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\IrfanView\i_view64.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="5" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Nuix\Nuix Evidence Mover\EvidenceMover.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="1" DesktopApplicationID="C:\standalone\rufus\rufus-3.18.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="1" Row="1" DesktopApplicationID="Apple.iTunes" />
         </start:Group>
         <start:Group Name="Windows Analysis">
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="0" DesktopApplicationID="C:\standalone\zimmerman\net6\MFTExplorer\MFTExplorer.exe" />
