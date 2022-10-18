@@ -6,6 +6,7 @@ include:
   - cpcwin.standalones
   - cpcwin.python2-tools
   - cpcwin.python3-tools
+  - cpcwin.searchkit
   - cpcwin.cleanup
 
 cpcwin-addon-version-file:
@@ -20,4 +21,5 @@ cpcwin-addon-version-file:
       - sls: cpcwin.standalones
       - sls: cpcwin.python2-tools
       - sls: cpcwin.python3-tools
+      - sls: cpcwin.searchkit
       - sls: cpcwin.cleanup

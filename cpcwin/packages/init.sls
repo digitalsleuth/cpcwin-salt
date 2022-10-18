@@ -46,6 +46,7 @@ include:
   - cpcwin.packages.bulkrenameutility
   - cpcwin.packages.tableau-firmware-update
   - cpcwin.packages.google-earth-pro
+  - cpcwin.packages.itunes
 
 cpcwin-packages:
   test.nop:
@@ -97,3 +98,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.bulkrenameutility
       - sls: cpcwin.packages.tableau-firmware-update
       - sls: cpcwin.packages.google-earth-pro
+      - sls: cpcwin.packages.itunes

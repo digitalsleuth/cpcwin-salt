@@ -36,6 +36,7 @@
 -;system.log2; Registry hive log2	5
 -;usrclass.dat.log1; Registry hive log1	4
 -;usrclass.dat.log2; Registry hive log2	4
+-registry Registry hive	4
 *** P2P
 *** eBook
 *** 3D Graphics
@@ -61,7 +62,6 @@
 +;usrclass.dat; Registry hive	4
 +;usrclass.dat.log1; Registry hive log1	4
 +;usrclass.dat.log2; Registry hive log2	4
-+registry Registry hive	4
 +;setupapi.dev.log; Registry-related Content	4
 +;system.evtx; Registry-related Content	4
 +;security.evtx; Registry-related Content	4
