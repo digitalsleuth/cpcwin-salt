@@ -1,4 +1,5 @@
-{% set zips = ['FTK-Imager-4-7-0-19-portable.zip', 'FTK-Imager-3-2-0-0-portable.zip', 'searchkit.zip'] %}
+{% set zips = ['FTK-Imager-4-7-1-2-portable.zip', 'FTK-Imager-3-2-0-0-portable.zip', 'searchkit.zip'] %}
+{% set folders = ['PE01', 'PE03', 'PE04', 'PE05', 'PE06', 'PE07'] %}
 
 {% for zip in zips %}
 
@@ -21,3 +22,12 @@
 searchkit-zip-cleanup:
   file.absent:
     - name: 'C:\salt'
+
+{%for folder in folders %}
+
+searchkit-{{ folder }}-folder:
+  file.managed:
+    - name: 'C:\SEARCHKIT_USB\Evidence\{{ folder }}\'
+    - makedirs: True
+
+{% endfor %}

@@ -1,4 +1,5 @@
 {% set hash = 'c1bae838ab7759dbccac5fe44827f770bdaec4009c190e4edc218beb8f3d637c' %}
+{% set case_folders = ['Evidence', 'Export', 'Temp', 'Xways'] %}
 
 cpcwin-theme-wallpaper-source:
   file.managed:
@@ -75,3 +76,11 @@ cleanup-nimi:
     - name: 'C:\salt'
     - require:
       - cmd: nimi-run
+
+{% for folder in case_folders %}
+make-{{ folder }}-folder:
+  file.managed:
+    - name: 'C:\CASE_FOLDER_STRUCTURE\{{ folder }}\'
+    - makedirs: True
+
+{% endfor %}

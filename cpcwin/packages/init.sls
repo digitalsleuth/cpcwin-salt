@@ -5,7 +5,6 @@ include:
   - cpcwin.packages.autopsy
   - cpcwin.packages.firefox
   - cpcwin.packages.chrome
-  - cpcwin.packages.registry-viewer
   - cpcwin.packages.ftk-imager
   - cpcwin.packages.httplogbrowser
   - cpcwin.packages.db-browser-sqlite
@@ -57,7 +56,6 @@ cpcwin-packages:
       - sls: cpcwin.packages.autopsy
       - sls: cpcwin.packages.firefox
       - sls: cpcwin.packages.chrome
-      - sls: cpcwin.packages.registry-viewer
       - sls: cpcwin.packages.ftk-imager
       - sls: cpcwin.packages.httplogbrowser
       - sls: cpcwin.packages.db-browser-sqlite

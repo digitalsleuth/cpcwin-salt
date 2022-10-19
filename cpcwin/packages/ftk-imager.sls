@@ -4,14 +4,22 @@
 # Category: Acquisition and Analysis
 # Author: Exterro Inc / AccessData
 # License: EULA
-# Version: 4.7.0.19
+# Version: 4.7.1.2
 # Notes: 
 
-ftk-imager:
-  pkg.installed
+{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
-ftk-imager-icon-remove:
-  file.absent:
-    - name: 'C:\Users\Public\Desktop\AccessData FTK Imager.lnk'
+ftk-imager-zip:
+  archive.extracted:
+    - name: 'C:\Program Files\AccessData\'
+    - source: salt://cpcwin/files/FTK-Imager-4-7-1-2-portable.zip
+
+ftk-imager-icon-shortcut:
+  file.shortcut:
+    - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\FTK Imager.lnk'
+    - target: 'C:\Program Files\AccessData\FTK Imager\FTK Imager.exe'
+    - force: True
+    - working_dir: 'C:\Program Files\AccessData\FTK Imager\'
+    - makedirs: True
     - require:
-      - pkg: ftk-imager
+      - archive: ftk-imager-zip
