@@ -40,3 +40,6 @@ delete-public-shortcut-{{ file }}:
   file.absent:
     - name: {{ file }}
 {% endfor %}
+
+saltutil.clear_cache:
+  module.run
