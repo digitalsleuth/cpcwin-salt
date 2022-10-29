@@ -19,6 +19,7 @@ cpcwin-python3-ileapp-source:
     - rev: master
     - force_clone: True
     - force_reset: True
+    - force_fetch: True
     - require:
       - sls: cpcwin.packages.git
 
