@@ -18,23 +18,26 @@ include:
   - cpcwin.standalones.mitec
   - cpcwin.standalones.ntcore
 
-nirsoft-download:
-  cmd.run:
-    - name: 'wget -O C:\salt\tempdownload\nirsoft_package_enc_{{ version }}.zip -Headers @{"Referer"="https://launcher.nirsoft.net/downloads/index.html"} https://download.nirsoft.net/nirsoft_package_enc_{{ version }}.zip'
-    - shell: powershell
-
 nirsoft-defender-exclusion:
   cmd.run:
     - name: 'Add-MpPreference -ExclusionPath "C:\standalone\"'
     - shell: powershell
+
+nirsoft-download:
+  cmd.run:
+    - name: 'wget -O C:\salt\tempdownload\nirsoft_package_enc_{{ version }}.zip -Headers @{"Referer"="https://launcher.nirsoft.net/downloads/index.html"} https://download.nirsoft.net/nirsoft_package_enc_{{ version }}.zip'
+    - shell: powershell
     - require:
-      - cmd: nirsoft-download
+      - cmd: nirsoft-defender-exclusion
 
 nirsoft-extract:
   cmd.run:
     - name: '"C:\Program Files\7-Zip\7z.exe" x C:\salt\tempdownload\nirsoft_package_enc_{{ version }}.zip -o"C:\standalone\nirsoft\" -pnirsoft9876$ -y'
     - shell: cmd
     - require:
+      - cmd: nirsoft-defender-exclusion
+      - cmd: nirsoft-download
+    - watch:
       - cmd: nirsoft-defender-exclusion
 
 cpcwin-standalones-nirsoft-shortcut:
