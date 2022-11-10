@@ -1,5 +1,6 @@
 {% set hash = 'c1bae838ab7759dbccac5fe44827f770bdaec4009c190e4edc218beb8f3d637c' %}
 {% set case_folders = ['Evidence', 'Export', 'Temp', 'Xways'] %}
+{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 cpcwin-theme-wallpaper-source:
   file.managed:
@@ -84,3 +85,15 @@ make-{{ folder }}-folder:
     - makedirs: True
 
 {% endfor %}
+
+nimi-shortcut:
+  file.shortcut:
+    - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\Nimi Places.lnk'
+    - target: 'C:\standalone\nimi\nimi.cmd'
+    - force: True
+    - working_dir: 'C:\standalone\nimi'
+    - icon_location: 'C:\standalone\nimi\Nimi Places.exe'
+    - makedirs: True
+    - require:
+      - archive: nimi-extract
+
