@@ -55,10 +55,10 @@ DisableUWPDiagInfo            # EnableUWPDiagInfo
 ### Security Tweaks ###
 SetUACLow                     # SetUACHigh
 # EnableSharingMappedDrives     # DisableSharingMappedDrives
-# DisableAdminShares              # EnableAdminShares
+EnableAdminShares             # DisableAdminShares
 DisableFirewall               # EnableFirewall
-HideDefenderTrayIcon          # ShowDefenderTrayIcon
-DisableDefender               # EnableDefender
+#HideDefenderTrayIcon          # ShowDefenderTrayIcon
+#DisableDefender               # EnableDefender
 DisableDefenderCloud          # EnableDefenderCloud
 # EnableCtrldFolderAccess       # DisableCtrldFolderAccess
 # EnableCIMemoryIntegrity       # DisableCIMemoryIntegrity
