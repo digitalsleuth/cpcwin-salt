@@ -38,6 +38,9 @@ include:
   - cpcwin.packages.google-earth-pro
   - cpcwin.packages.itunes
   - cpcwin.packages.shadowexplorer
+  - cpcwin.packages.virtualbox
+  - cpcwin.packages.hashcheck
+  - cpcwin.packages.ms-powertoys
 
 cpcwin-packages:
   test.nop:
@@ -81,3 +84,6 @@ cpcwin-packages:
       - sls: cpcwin.packages.google-earth-pro
       - sls: cpcwin.packages.itunes
       - sls: cpcwin.packages.shadowexplorer
+      - sls: cpcwin.packages.virtualbox
+      - sls: cpcwin.packages.hashcheck
+      - sls: cpcwin.packages.ms-powertoys

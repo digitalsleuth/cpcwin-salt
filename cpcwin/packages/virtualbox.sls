@@ -1,0 +1,2 @@
+virtualbox:
+  pkg.installed

@@ -35,6 +35,7 @@ include:
   - cpcwin.standalones.hex2guid
   - cpcwin.standalones.usbdetective
   - cpcwin.standalones.bulkrenameutility-portable
+  - cpcwin.standalones.hindsight
 
 cpcwin-standalones:
   test.nop:
@@ -75,3 +76,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.hex2guid
       - sls: cpcwin.standalones.usbdetective
       - sls: cpcwin.standalones.bulkrenameutility-portable
+      - sls: cpcwin.standalones.hindsight
