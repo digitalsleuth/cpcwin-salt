@@ -23,11 +23,13 @@ searchkit-zip-cleanup:
   file.absent:
     - name: 'C:\salt'
 
-{%for folder in folders %}
+{% for folder in folders %}
 
 searchkit-{{ folder }}-folder:
-  file.managed:
+  file.directory:
     - name: 'C:\SEARCHKIT_USB\Evidence\{{ folder }}\'
     - makedirs: True
+    - replace: True
+    - win_inheritance: True
 
 {% endfor %}

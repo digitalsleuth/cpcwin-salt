@@ -36,6 +36,7 @@ include:
   - cpcwin.standalones.usbdetective
   - cpcwin.standalones.bulkrenameutility-portable
   - cpcwin.standalones.hindsight
+  - cpcwin.standalones.windowgrid
 
 cpcwin-standalones:
   test.nop:
@@ -77,3 +78,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.usbdetective
       - sls: cpcwin.standalones.bulkrenameutility-portable
       - sls: cpcwin.standalones.hindsight
+      - sls: cpcwin.standalones.windowgrid

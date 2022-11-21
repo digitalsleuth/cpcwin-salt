@@ -29,3 +29,5 @@ free-hex-editor-icon:
     - require:
       - user: cpcwin-user-{{ user }}
       - pkg: free-hex-editor-neo
+    - watch:
+      - pkg: free-hex-editor-neo

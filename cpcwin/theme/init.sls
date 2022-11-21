@@ -4,8 +4,8 @@
 
 cpcwin-theme-wallpaper-source:
   file.managed:
-    - name: 'C:\standalone\cpc-wallpaper-cmpfor-4k.jpg'
-    - source: salt://cpcwin/theme/cpc-wallpaper-cmpfor-4k.jpg
+    - name: 'C:\standalone\cpc-wallpaper-cmpfor-4k.png'
+    - source: salt://cpcwin/theme/cpc-wallpaper-cmpfor-4k.png
     - source_hash: sha256={{ hash }}
     - makedirs: True
     - win_inheritance: True
@@ -22,7 +22,7 @@ cpcwin-theme-set-wallpaper:
     - name: HKEY_CURRENT_USER\Control Panel\Desktop
     - vname: WallPaper
     - vtype: REG_SZ
-    - vdata: 'C:\standalone\cpc-wallpaper-cmpfor-4k.jpg'
+    - vdata: 'C:\standalone\cpc-wallpaper-cmpfor-4k.png'
 
 cpcwin-theme-set-wallpaper-center:
   reg.present:
@@ -42,6 +42,11 @@ cpcwin-theme-update-wallpaper:
   cmd.run:
     - name: 'RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True'
     - shell: cmd
+
+nimi-taskkill:
+  cmd.run:
+    - name: 'taskkill /F /IM "Nimi Places.exe"'
+    - bg: True
 
 nimi-setup:
   file.managed:
@@ -66,7 +71,7 @@ nimi-autostart:
 
 nimi-run:
   cmd.run:
-    - name: '"Nimi Places.exe"'
+    - name: '"nimi.cmd"'
     - cwd: 'C:\standalone\nimi\'
     - bg: True
     - require:
@@ -79,10 +84,13 @@ cleanup-nimi:
       - cmd: nimi-run
 
 {% for folder in case_folders %}
+
 make-{{ folder }}-folder:
-  file.managed:
+  file.directory:
     - name: 'C:\CASE_FOLDER_STRUCTURE\{{ folder }}\'
     - makedirs: True
+    - replace: True
+    - win_inheritance: True
 
 {% endfor %}
 
