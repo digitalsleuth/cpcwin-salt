@@ -69,19 +69,11 @@ nimi-autostart:
     - vtype: REG_SZ
     - vdata: '"C:\standalone\nimi\nimi.cmd"'
 
-nimi-run:
-  cmd.run:
-    - name: '"nimi.cmd"'
-    - cwd: 'C:\standalone\nimi\'
-    - bg: True
-    - require:
-      - reg: nimi-autostart
-
 cleanup-nimi:
   file.absent:
     - name: 'C:\salt'
     - require:
-      - cmd: nimi-run
+      - cmd: nimi-autostart
 
 {% for folder in case_folders %}
 
@@ -104,4 +96,3 @@ nimi-shortcut:
     - makedirs: True
     - require:
       - archive: nimi-extract
-
