@@ -73,7 +73,7 @@ cleanup-nimi:
   file.absent:
     - name: 'C:\salt'
     - require:
-      - cmd: nimi-autostart
+      - reg: nimi-autostart
 
 {% for folder in case_folders %}
 

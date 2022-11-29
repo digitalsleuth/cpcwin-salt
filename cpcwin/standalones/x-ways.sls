@@ -4,17 +4,17 @@
 # Category: Acquisition and Analysis
 # Author: Stefan Fleischmann
 # License: License Dependent - https://www.x-ways.net/terminology.html
-# Version: 20.6 SR-4 x64
+# Version: 20.6 SR-5 x64
 # Notes:
 
 {% set version = "206" %}
-{% set auth_token = "TOKENPLACEHOLDER" %}
+{% set auth_token = "Zm9yZW5zaWNzOm0sUjdlKTNrVXF4VA==" %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
-{% set xwhash = "ecae2b3decf09bf75fa17ade49917a14b1f5da4dca9bd4953e6e2ca084944d45" %}
-{% set xviewerhash = "544b69c75823d351abb35a2eaa7d7ba40760e012db22cdf45c0f82b6392a1f3b" %}
+{% set xwhash = "5852B1268CEF99DD97390DFFA989EC3A5E9B9A2FF235EC0F628D561C122A8C02" %}
+{% set xviewerhash = "D23E2D3E56372F524EA448A518DD03F4D500E01215FCBAB392B64CCEC25C3FC1" %}
 {% set mplayerhash = "a3a13bbda7ba0052c71521124e428f490648ea452f3bcbcf31860b9d0120ed25" %}
 {% set tesseracthash = "95c484205c6474b7b7ef5109a3412666090857c44999cf72f06f55dc9c239310" %}
-{% set manualhash = "b4e990c8181a962891aa742b522c8cedabe41f8c7dbbeed4e9d3d6575e940d0a" %}
+{% set manualhash = "9605259431D4B33E742DB0C22B6C44926F01BC67DFFE5BD491AD206F7739C96E" %}
 
 {% if salt['file.directory_exists']('C:\\salt\\tempdownload\\') %}
 temp-directory-exists:
@@ -83,64 +83,69 @@ xways-manual-download:
     - shell: powershell
 {% endif %}
 
-xways-extract:
+{% set dirs = ['C:\\X-Ways' + version + '\\','C:\\CASE_FOLDER_STRUCTURE\\X-Ways' + version + '\\'] %}
+{% for dir in dirs %}
+
+xways-extract-{{ dir }}:
   archive.extracted:
-    - name: 'C:\X-Ways{{ version }}\'
+    - name: '{{ dir }}'
     - source: 'C:\salt\tempdownload\xw_forensics{{ version }}.zip'
     - enforce_toplevel: False
 
-xways-viewer-extract:
+xways-viewer-extract-{{ dir }}:
   archive.extracted:
-    - name: 'C:\X-Ways{{ version }}\'
+    - name: '{{ dir }}'
     - source: 'C:\salt\tempdownload\xw_viewer.zip'
     - enforce_toplevel: False
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-tesseract-extract:
+xways-tesseract-extract-{{ dir }}:
   archive.extracted:
-    - name: 'C:\X-Ways{{ version }}\'
+    - name: '{{ dir }}'
     - source: 'C:\salt\tempdownload\Tesseract.zip'
     - enforce_toplevel: False
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-mplayer-extract:
+xways-mplayer-extract-{{ dir }}:
   archive.extracted:
-    - name: 'C:\X-Ways{{ version }}\'
+    - name: '{{ dir }}'
     - source: 'C:\salt\tempdownload\MPlayer_2018_x64.zip'
     - enforce_toplevel: False
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-manual-copy:
+xways-manual-copy-{{ dir }}:
   file.managed:
-    - name: 'C:\X-Ways{{ version }}\manual.pdf'
+    - name: '{{ dir }}manual.pdf'
     - source: 'C:\salt\tempdownload\manual.pdf'
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-winhex-binary:
+xways-winhex-binary-{{ dir }}:
   file.copy:
-    - name: 'C:\X-Ways{{ version }}\winhex.exe'
-    - source: 'C:\X-Ways{{ version }}\xwforensics.exe'
+    - name: '{{ dir }}winhex.exe'
+    - source: '{{ dir }}xwforensics.exe'
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-winhex64-binary:
+xways-winhex64-binary-{{ dir }}:
   file.copy:
-    - name: 'C:\X-Ways{{ version }}\winhex64.exe'
-    - source: 'C:\X-Ways{{ version }}\xwforensics64.exe'
+    - name: '{{ dir }}winhex64.exe'
+    - source: '{{ dir }}xwforensics64.exe'
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
 
-xways-file-type-categories-user:
+xways-file-type-categories-user-{{ dir }}:
   file.managed:
-    - name: 'C:\X-Ways{{ version }}\File Type Categories User.txt'
+    - name: '{{ dir }}File Type Categories User.txt'
     - source: salt://cpcwin/files/File_Type_Categories_User.txt
     - skip_verify: True
     - require:
-      - archive: xways-extract
+      - archive: xways-extract-{{ dir }}
+
+{% endfor %}
 
 cpcwin-standalones-xways-shortcut:
   file.shortcut:
@@ -150,7 +155,7 @@ cpcwin-standalones-xways-shortcut:
     - working_dir: 'C:\X-Ways{{ version }}\'
     - makedirs: True
     - require:
-      - archive: xways-extract
+      - cmd: xways-download
 
 cpcwin-standalones-winhex-shortcut:
   file.shortcut:
@@ -160,6 +165,6 @@ cpcwin-standalones-winhex-shortcut:
     - working_dir: 'C:\X-Ways{{ version }}\'
     - makedirs: True
     - require:
-      - archive: xways-extract
+      - cmd: xways-download
 
 {% endif %}

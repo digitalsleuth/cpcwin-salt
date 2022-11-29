@@ -1,0 +1,28 @@
+{% set user = salt['pillar.get']('cpcwin_user', 'forensics') %}
+
+include:
+  - cpcwin.config.user
+  - cpcwin.packages.ms-vcpp-2010-redist-x64
+
+casenotes-pro-source:
+  file.managed:
+    - name: 'C:\salt\tempdownload\cnsetup.msi'
+    - source: salt://cpcwin/files/cnsetup.msi
+    - skip_verify: True
+    - makedirs: True
+
+casenotes-pro-install:
+  cmd.run:
+    - name: 'msiexec /i cnsetup.msi /qn /norestart'
+    - cwd: 'C:\salt\tempdownload\'
+    - require:
+      - sls: cpcwin.packages.ms-vcpp-2010-redist-x64
+
+casenotes-icons-remove:
+  file.absent:
+    - names:
+      - 'C:\Users\{{ user }}\Desktop\CaseNotes Professional.lnk'
+      - 'C:\Users\{{ user }}\Desktop\CaseNotes Professional Manual.pdf.lnk'
+    - require:
+      - cmd: casenotes-pro-install
+      - user: cpcwin-user-{{ user }}

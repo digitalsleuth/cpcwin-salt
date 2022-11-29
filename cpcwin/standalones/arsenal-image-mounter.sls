@@ -12,7 +12,6 @@
 
 include:
   - cpcwin.standalones.megatools
-  - cpcwin.packages.dotnet6-desktop-runtime
 
 arsenal-remove-previous:
   file.absent:
@@ -36,7 +35,6 @@ arsenal-extract:
     - require:
       - sls: cpcwin.standalones.megatools
       - cmd: arsenal-download
-      - sls: cpcwin.packages.dotnet6-desktop-runtime
 
 arsenal-folder-rename:
   file.rename:
@@ -59,4 +57,3 @@ cpcwin-standalones-arsenal-shortcut:
       - cmd: arsenal-download
       - archive: arsenal-extract
       - file: arsenal-folder-rename
-

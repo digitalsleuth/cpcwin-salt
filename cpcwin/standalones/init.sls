@@ -37,6 +37,7 @@ include:
   - cpcwin.standalones.bulkrenameutility-portable
   - cpcwin.standalones.hindsight
   - cpcwin.standalones.windowgrid
+  - cpcwin.standalones.iphone-analyzer
 
 cpcwin-standalones:
   test.nop:
@@ -79,3 +80,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.bulkrenameutility-portable
       - sls: cpcwin.standalones.hindsight
       - sls: cpcwin.standalones.windowgrid
+      - sls: cpcwin.standalones.iphone-analyzer

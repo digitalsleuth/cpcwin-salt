@@ -2,6 +2,7 @@ include:
   - cpcwin.packages.7zip
   - cpcwin.packages.git
   - cpcwin.packages.ms-vcpp-2015-build-tools
+  - cpcwin.packages.dotnet6-desktop-runtime
   - cpcwin.packages.autopsy
   - cpcwin.packages.firefox
   - cpcwin.packages.chrome
@@ -48,6 +49,7 @@ cpcwin-packages:
       - sls: cpcwin.packages.7zip
       - sls: cpcwin.packages.git
       - sls: cpcwin.packages.ms-vcpp-2015-build-tools
+      - sls: cpcwin.packages.dotnet6-desktop-runtime
       - sls: cpcwin.packages.autopsy
       - sls: cpcwin.packages.firefox
       - sls: cpcwin.packages.chrome
