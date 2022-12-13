@@ -38,6 +38,7 @@ include:
   - cpcwin.standalones.windowgrid
   - cpcwin.standalones.iphone-analyzer
   - cpcwin.standalones.mftbrowser
+  - cpcwin.standalones.shadowexplorer
 
 cpcwin-standalones:
   test.nop:
@@ -81,3 +82,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.windowgrid
       - sls: cpcwin.standalones.iphone-analyzer
       - sls: cpcwin.standalones.mftbrowser
+      - sls: cpcwin.standalones.shadowexplorer

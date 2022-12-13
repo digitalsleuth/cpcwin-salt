@@ -82,7 +82,7 @@
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="0" DesktopApplicationID="C:\standalone\zimmerman\net6\RegistryExplorer\RegistryExplorer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="1" DesktopApplicationID="C:\standalone\zimmerman\net6\TimelineExplorer\TimelineExplorer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="C:\standalone\wleapp\wleappGUI.py" />
-          <start:DesktopApplicationTile Size="1x1" Column="5" Row="1" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\ShadowExplorer\ShadowExplorer.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="5" Row="1" DesktopApplicationID="C:\standalone\shadowexplorer\ShadowExplorerPortable.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="2" DesktopApplicationID="C:\standalone\mftbrowser\MFTBrowser.exe" />
         </start:Group>
         <start:Group Name="Write Blockers">
