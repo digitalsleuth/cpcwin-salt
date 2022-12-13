@@ -1,9 +1,9 @@
 # Name: OpenHashTab
 # Website: https://github.com/namazso/OpenHashTab
-# Description: Shell Extension for File Hashing
+# Description: Shell extension for file hashing
 # Category: Utilities
-# Author: Namazso
-# License: GNU General Public License v3 - https://github.com/namazso/OpenHashTab/blob/master/license.installer.txt
+# Author: namazso
+# License: GNU General Public License 3.0 (https://github.com/namazso/OpenHashTab/blob/master/COPYING)
 # Version: 3.0.2
 # Notes:
 

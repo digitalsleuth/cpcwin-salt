@@ -1,3 +1,12 @@
+# Name: NTCore Tool Suite
+# Website: https://ntcore.com
+# Description: Suite of Windows-based analysis tools
+# Category: Windows Analysis
+# Author: Erik Pistelli
+# License: 
+# Version: Various
+# Notes:
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set files = [
                 ('DriverList', 'dbc5736808cf7203cf289a269cc27cbcf90a8c69e03eed60ae361ad29da08d28'),

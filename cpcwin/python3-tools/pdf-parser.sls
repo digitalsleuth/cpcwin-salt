@@ -1,9 +1,10 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: pdf-parser
+# Website: https://github.com/didierstevens/didierstevensssuite
+# Description: PDF document parser
+# Category: Document Analysis
+# Author: Didier Stevens
+# License: Public Domain
+# Version: 0.7.7
 # Notes: 
 
 include:

@@ -1,9 +1,9 @@
 # Name: SysTools SQL MDF Viewer
 # Website: https://www.systoolsgroup.com
-# Description: SQL MDF Viewer
+# Description: SQL MDF analysis tool
 # Category: Databases
-# Author: SysTools Group
-# License: EULA - https://www.systoolsgroup.com/eula.pdf
+# Author: SysTools
+# License: EULA (https://www.systoolsgroup.com/eula.html)
 # Version: 11.0
 # Notes: 
 

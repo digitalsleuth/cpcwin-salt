@@ -2,8 +2,8 @@
 # Website: https://usbdetective.com
 # Description: Windows USB analysis tool
 # Category: Windows Analysis
-# Author: 
-# License: 
+# Author: Jason Hale
+# License: Software License Agreement (https://usbdetective.com/docs/usbdla.pdf)
 # Version: 1.6.2
 # Notes: 
 

@@ -1,9 +1,10 @@
-# Name:
-# Website:
-# Description:
-# Category:
-# Author:
-# License:
+# Name: Glossary Generator
+# Website: (nil - in house tool)
+# Description: Tool to generate a glossary for forensic reports
+# Category: Utilities
+# Author: Jad Saliba
+# License: None Provided
+# Version: 1.1
 # Notes:
 
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}

@@ -1,10 +1,10 @@
 # Name: PuTTY
-# Website: https://www.putty.org
-# Description: SSH and Telnet Client
+# Website: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+# Description: Free SSH and Telnet Client
 # Category: Network
-# Author: https://www.chiark.greenend.org.uk/~sgtatham/putty/team.html
-# License: MIT License - https://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html
-# Version: 0.77
+# Author: Simon Tatham
+# License: https://tartarus.org/~simon/putty-snapshots/htmldoc/AppendixD.html#licence
+# Version: 0.78
 # Notes: 
 
 putty:

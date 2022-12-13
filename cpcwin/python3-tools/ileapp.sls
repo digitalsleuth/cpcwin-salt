@@ -1,16 +1,17 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: ILEAPP
+# Website: https://github.com/abrignoni/ileapp
+# Description: iOS Logs Events and Plists Parser
+# Category: Mobile Analysis
+# Author: Alexis Brignoni
+# License: MIT License (https://github.com/abrignoni/iLEAPP/blob/master/LICENSE)
+# Version: 1.18.1
 # Notes: 
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
   - cpcwin.packages.python3
   - cpcwin.packages.git
-  - cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-ileapp-source:
   git.latest:
@@ -30,7 +31,6 @@ cpcwin-python3-ileapp-requirements:
     - require:
       - git: cpcwin-python3-ileapp-source
       - sls: cpcwin.packages.python3
-      - sls: cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-ileapp-header:
   file.prepend:

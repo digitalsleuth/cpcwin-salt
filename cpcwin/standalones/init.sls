@@ -9,7 +9,6 @@ include:
   - cpcwin.standalones.usb-write-blocker
   - cpcwin.standalones.logfileparser
   - cpcwin.standalones.kape
-  - cpcwin.standalones.sqlitestudio
   - cpcwin.standalones.autorunner
   - cpcwin.standalones.sleuthkit
   - cpcwin.standalones.logparser-studio
@@ -38,6 +37,7 @@ include:
   - cpcwin.standalones.hindsight
   - cpcwin.standalones.windowgrid
   - cpcwin.standalones.iphone-analyzer
+  - cpcwin.standalones.mftbrowser
 
 cpcwin-standalones:
   test.nop:
@@ -52,7 +52,6 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.usb-write-blocker
       - sls: cpcwin.standalones.logfileparser
       - sls: cpcwin.standalones.kape
-      - sls: cpcwin.standalones.sqlitestudio
       - sls: cpcwin.standalones.autorunner
       - sls: cpcwin.standalones.sleuthkit
       - sls: cpcwin.standalones.logparser-studio
@@ -81,3 +80,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.hindsight
       - sls: cpcwin.standalones.windowgrid
       - sls: cpcwin.standalones.iphone-analyzer
+      - sls: cpcwin.standalones.mftbrowser

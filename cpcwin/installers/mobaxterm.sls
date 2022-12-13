@@ -7,7 +7,6 @@
 # Version: 22.0
 # Notes: Home Edition
 
-
 {% set version = '22.0' %}
 {% set source_folder = '2202022022680737' %}
 {% set hash = 'B7EFC5AA99CF569BEEB61EBF6AE6912A4ECEDEC0320BCBF8256AED8571E3D134' %}

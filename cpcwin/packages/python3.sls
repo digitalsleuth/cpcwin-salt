@@ -1,9 +1,9 @@
 # Name: Python 3
-# Website: https://python.org
-# Description: Python Programming Language
-# Category: Programming
+# Website: https://www.python.org
+# Description: Python Programming Language Framework
+# Category: Requirements
 # Author: Python Software Foundation
-# License: https://docs.python.org/3.10/license.html
+# License: Python Software Foundation License Version 2.0 (https://docs.python.org/3.10/license.html)
 # Version: 3.10.1150.0
 # Notes:
 

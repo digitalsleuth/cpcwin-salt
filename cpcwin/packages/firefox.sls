@@ -1,10 +1,10 @@
 # Name: Firefox
-# Website: https://www.mozilla.org
-# Description: Web Browser
+# Website: https://www.mozilla.org/en-US/firefox/new/
+# Description: Mozilla Web Browser
 # Category: Browsers
 # Author: Mozilla Foundation
-# License: Mozilla Public LIcense 2.0 (MPL) - https://www.mozilla.org/MPL/2.0/FAQ/
-# Version: 101.0.1
+# License: Mozilla Public License 2.0 (https://www.mozilla.org/en-US/MPL/)
+# Version: 107.0.1
 # Notes: 
 
 firefox_x64:

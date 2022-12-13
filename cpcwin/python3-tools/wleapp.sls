@@ -1,16 +1,17 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: WLEAPP
+# Website: https://github.com/abrignoni/wleapp
+# Description: Windows Logs Events and Properties Parser
+# Category: Windows Analysis
+# Author: Alexis Brignoni
+# License: MIT License (https://github.com/abrignoni/WLEAPP/blob/main/LICENSE)
+# Version: 0.1
 # Notes: 
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
   - cpcwin.packages.python3
   - cpcwin.packages.git
-  - cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-wleapp-source:
   git.latest:
@@ -29,7 +30,6 @@ cpcwin-python3-wleapp-requirements:
     - require:
       - git: cpcwin-python3-wleapp-source
       - sls: cpcwin.packages.python3
-      - sls: cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-wleapp-header:
   file.prepend:

@@ -4,11 +4,11 @@
 # Category: Document Analysis
 # Author: Phil Harvey
 # License: https://exiftool.org/#license
-# Version: 12.42
+# Version: 12.51
 # Notes:
 
-{% set version = '12.42' %}
-{% set hash = '3ca80ee5dfc8c52ab4378260507b7a776fbbb500410c44dfcfb0655b11f897c8' %}
+{% set version = '12.51' %}
+{% set hash = 'c6081b5133a56bacd4f0e6b3117518ca0d40e994ef51040630ca2059275bad4b' %}
 
 exiftool-download:
   file.managed:

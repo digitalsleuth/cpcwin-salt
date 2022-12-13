@@ -1,7 +1,11 @@
-# Currently Monolith Notes is set to auto pull / check for updates from a 
-# non-accesible IP address, which appears to belong to another company / entity
-# Since it's possible it might pull down something unexpected, this state is
-# temporarily disabled in the init, but can be manually installed if desired.
+# Name: Monolith Notes
+# Website: https://www.monolithforensics.com/
+# Description: Forensic note taking and tracking tool
+# Category: Utilities
+# Author: Monolith Forensics
+# License: EULA
+# Version: 
+# Notes: Currently Monolith Notes is set to auto pull / check for updates from a non-accesible IP address, which appears to belong to another company / entity Since it's possible it might pull down something unexpected, this state is temporarily disabled in the init, but can be manually installed if desired.
 
 {% set hash = 'e5834378b6d0ac51f8fcd74b3f2fc5fd6924a3e5808548967602805acc9b68e1' %}
 

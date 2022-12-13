@@ -1,6 +1,5 @@
 include:
   - cpcwin.installers.dcode
-  - cpcwin.installers.vscode
   - cpcwin.installers.hxd
   - cpcwin.installers.redline
   - cpcwin.installers.systools-pst-viewer
@@ -15,7 +14,6 @@ cpcwin-installers:
   test.nop:
     - require:
       - sls: cpcwin.installers.dcode
-      - sls: cpcwin.installers.vscode
       - sls: cpcwin.installers.hxd
       - sls: cpcwin.installers.redline
       - sls: cpcwin.installers.systools-pst-viewer

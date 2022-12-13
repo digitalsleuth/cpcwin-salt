@@ -1,10 +1,10 @@
-# Name: LibreOffice
+# Name: Libre Office
 # Website: https://www.libreoffice.org
-# Description: Document Processing Software
+# Description: Open Source Office Document suite
 # Category: Document Viewers
-# Author: LibreOffice - The Document Foundation
-# License: https://www.libreoffice.org/about-us/licenses
-# Version: 7.3.4
+# Author: LibreOffice
+# License: Mozilla Public License (https://www.libreoffice.org/download/license/)
+# Version: 7.4.3
 # Notes: 
 
 libreoffice:

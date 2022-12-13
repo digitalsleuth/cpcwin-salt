@@ -1,3 +1,12 @@
+# Name: USBRegview
+# Website: https://github.com/ms-cpc/USBRegview
+# Description: Batch file to automate loading registry hives into USBDeview
+# Category: Windows Analysis
+# Author: Mark Southby
+# License: None
+# Version: 20220413b
+# Notes: 
+
 include:
   - cpcwin.packages.git
 

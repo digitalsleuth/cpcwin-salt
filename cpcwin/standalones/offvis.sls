@@ -1,9 +1,10 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: OffVis
+# Website: http://go.microsoft.com/fwlink/?LinkId=158791
+# Description: Office document visualization tool
+# Category: Document Analysis
+# Author: Microsoft
+# License: EULA
+# Version: 1.1.0.0
 # Notes: 
 
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}

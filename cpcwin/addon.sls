@@ -11,7 +11,7 @@ include:
 
 cpcwin-addon-version-file:
   file.managed:
-    - name: 'C:\ProgramData\Salt Project\Salt\srv\salt\cpcwin-version'
+    - name: 'C:\cpcwin-version'
     - source: salt://cpcwin/VERSION
     - require:
       - sls: cpcwin.config.user

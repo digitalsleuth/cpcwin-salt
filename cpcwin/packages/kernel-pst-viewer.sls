@@ -1,11 +1,11 @@
 # Name: Kernel PST Viewer
-# Website: https://www.kerneldatarecovery.com
-# Description: Outlook PST Parser
+# Website: https://www.nucleustechnologies.com
+# Description: Free Outlook PST viewer     
 # Category: Email
-# Author: KernelApps
-# License: EULA - https://www.nucleustechnologies.com/eula.pdf
+# Author: Nucleus Technologies
+# License: EULA (https://www.nucleustechnologies.com/eula.pdf)
 # Version: 20.3
-# Notes:
+# Notes: 
 
 kernel-pst-viewer:
   pkg.installed

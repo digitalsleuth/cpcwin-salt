@@ -1,3 +1,12 @@
+# Name: CaseNotes Pro
+# Website: https://first-response.co.uk/
+# Description: Tool to record and track case notes
+# Category: Utilities
+# Author: First Response
+# License: EULA
+# Version: 2.17.8.30
+# Notes:
+
 {% set user = salt['pillar.get']('cpcwin_user', 'forensics') %}
 
 include:

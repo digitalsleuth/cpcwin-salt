@@ -2,8 +2,8 @@
 # Website: https://github.com/dzzie/pdfstreamdumper
 # Description: PDF Analysis Tool
 # Category: Document Analysis
-# Author: David Zimmer
-# License: 
+# Author: David Zimmer (dzzie)
+# License: None
 # Version: 0.9.624
 # Notes: 
 

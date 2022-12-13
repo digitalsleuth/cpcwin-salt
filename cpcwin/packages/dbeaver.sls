@@ -1,10 +1,10 @@
 # Name: dbeaver
-# Website: https://dbeaver.io
-# Description: Database analysis tool
+# Website: https://github.com/dbeaver/dbeaver
+# Description: SQL Database tool and client
 # Category: Databases
-# Author: DBeaver
-# License: Apache License v2 - https://dbeaver.io/product/dbeaver_license.txt
-# Version: 22.1.1
+# Author: Serge Rider and Contributors (https://github.com/dbeaver/dbeaver/graphs/contributors)
+# License: Apache License 2.0 (https://github.com/dbeaver/dbeaver/blob/devel/LICENSE.md)
+# Version: 22.2.5
 # Notes: 
 
 dbeaver:

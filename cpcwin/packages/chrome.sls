@@ -1,10 +1,10 @@
 # Name: Google Chrome
 # Website: https://www.google.com
 # Description: Google Web Browser
-# Category: Requirements
+# Category: Browsers
 # Author: Google
 # License: https://policies.google.com/terms
-# Version: 103.0.5060.66
+# Version: 108.0.5359.72
 # Notes: 
 
 {% set user = salt['pillar.get']('cpcwin_user', 'forensics') %}

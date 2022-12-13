@@ -1,8 +1,8 @@
-# Name: Magnet Chromebook Acquisition Assistant
+# Name: Magnet Chromebook Acquisition
 # Website: https://www.magnetforensics.com
-# Description: Chromebook Acquisition Tool
+# Description: Evidence Acquisition for Chromebook
 # Category: Acquisition and Analysis
-# Author: Magnet Forensics
+# Author: Jad Saliba - Magnet Forensics
 # License: EULA
 # Version: 1.06
 # Notes:

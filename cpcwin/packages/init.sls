@@ -1,6 +1,7 @@
 include:
   - cpcwin.packages.7zip
   - cpcwin.packages.git
+  - cpcwin.packages.dotnetfx35
   - cpcwin.packages.ms-vcpp-2015-build-tools
   - cpcwin.packages.dotnet6-desktop-runtime
   - cpcwin.packages.autopsy
@@ -42,12 +43,15 @@ include:
   - cpcwin.packages.virtualbox
   - cpcwin.packages.hashcheck
   - cpcwin.packages.ms-powertoys
+  - cpcwin.packages.vscode
+  - cpcwin.packages.sqlitestudio
 
 cpcwin-packages:
   test.nop:
     - require:
       - sls: cpcwin.packages.7zip
       - sls: cpcwin.packages.git
+      - sls: cpcwin.packages.dotnetfx35
       - sls: cpcwin.packages.ms-vcpp-2015-build-tools
       - sls: cpcwin.packages.dotnet6-desktop-runtime
       - sls: cpcwin.packages.autopsy
@@ -89,3 +93,5 @@ cpcwin-packages:
       - sls: cpcwin.packages.virtualbox
       - sls: cpcwin.packages.hashcheck
       - sls: cpcwin.packages.ms-powertoys
+      - sls: cpcwin.packages.vscode
+      - sls: cpcwin.packages.sqlitestudio

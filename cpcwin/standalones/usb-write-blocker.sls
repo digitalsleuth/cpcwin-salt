@@ -1,9 +1,10 @@
-# Name: USB-Write-Blocker
-# Website: https://github.com/digitalsleuth/Registry-Write-Block
-# Description: Executable and Batch script to modify registry keys for USB Write Blocking
-# Category: Utility
+# Name: USB Registry Write Blocker
+# Website: https://github.com/digitalsleuth/registry-write-block
+# Description: USB Write Blocker for standard USB / UASP devices using Registry Modifications
+# Category: Write Blockers
 # Author: Corey Forman (digitalsleuth)
 # License: MIT License (https://github.com/digitalsleuth/Registry-Write-Block/blob/master/LICENSE)
+# Version: 1.2
 # Notes: 
 
 {% set version = '1.2' %}

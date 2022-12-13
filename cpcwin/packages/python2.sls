@@ -1,11 +1,11 @@
 # Name: Python 2
-# Website: https://python.org
-# Description: Python Programming Language
-# Category: Programming
+# Website: https://www.python.org
+# Description: Python Programming Language Framework
+# Category: Requirements
 # Author: Python Software Foundation
-# License: https://docs.python.org/2.7/license.html
+# License: Python Software Foundation License Version 2.0 (https://docs.python.org/2.7/license.html)
 # Version: 2.7.18
-# Notes:
+# Notes: 
 
 python2_x64:
   pkg.installed

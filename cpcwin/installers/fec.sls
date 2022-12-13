@@ -4,12 +4,12 @@
 # Category: Email
 # Author: Arman Gungor - Metaspike
 # License: 
-# Version: 3.75.1.12
+# Version: 3.81.1.0
 # Notes:
 
-{% set version = '3.75.1.12' %}
-{% set hash = '02F62A581B9F972834E403136EBAFEE145549F9B8B88F70F592ABE4742128D80' %}
-{% set folder_hash = 'f9966d48eeaa' %}
+{% set version = '3.81.1.0' %}
+{% set hash = '0e9346f4f49ec72fc579e499dfbd8639ce9752ba159c3e1f04056118e10534b5' %}
+{% set folder_hash = 'd4af798a97ee' %}
 
 fec-download:
   file.managed:

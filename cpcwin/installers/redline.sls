@@ -3,7 +3,7 @@
 # Description: Memory and File analysis tool
 # Category: Raw Parsers / Decoders
 # Author: FireEye
-# License: 
+# License: Software Royalty-Free License (https://www.trellix.com/en-us/downloads/free-tools/terms-of-use.html)
 # Version: 2.0
 # Notes: 
 

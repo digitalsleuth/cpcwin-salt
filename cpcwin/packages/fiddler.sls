@@ -1,6 +1,6 @@
-# Name: Fiddler
-# Website: https://www.telerik.com/fiddler
-# Description: Web Proxy
+# Name: Telerik Fiddler
+# Website: https://www.telerik.com
+# Description: Web debugging proxy tool
 # Category: Network
 # Author: Telerik
 # License: 

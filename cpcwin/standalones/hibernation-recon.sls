@@ -1,13 +1,15 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: Hibernation-Recon
+# Website: https://arsenalrecon.com
+# Description: Tool to parse a Windows hibernation file
+# Category: Windows Analysis
+# Author: Arsenal Recon
+# License: EULA
+# Version: 1.2.2.85
 # Notes:
 
 {% set hash = '60BB6C8C6F24FDBBBB2A3EAA1F9601F21ED36327F57735FE3E8F3E25C6619AD6' %}
 {% set version = '1.2.2.85' %}
+{% set file_value = 'PowEiY4S#2T087NqeVypCD77MmINi7jEoDKOPsVpnRMwQJKXQZys' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
@@ -20,7 +22,7 @@ hiber-recon-remove-previous:
 
 hiber-recon-download:
   cmd.run:
-    - name: 'C:\standalone\megatools\megatools.exe dl https://mega.nz/file/PowEiY4S#2T087NqeVypCD77MmINi7jEoDKOPsVpnRMwQJKXQZys --path C:\salt\tempdownload'
+    - name: 'C:\standalone\megatools\megatools.exe dl https://mega.nz/file/{{ file_value }} --path C:\salt\tempdownload'
     - shell: cmd
     - require:
       - sls: cpcwin.standalones.megatools
