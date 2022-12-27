@@ -7,6 +7,7 @@
 # Version: 12.51
 # Notes:
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set version = '12.51' %}
 {% set hash = 'c6081b5133a56bacd4f0e6b3117518ca0d40e994ef51040630ca2059275bad4b' %}
 
@@ -19,7 +20,7 @@ exiftool-download:
 
 exiftool-extract:
   archive.extracted:
-    - name: 'C:\standalone\exiftool\'
+    - name: '{{ inpath }}\exiftool\'
     - source: 'C:\salt\tempdownload\exiftool-{{ version }}.zip'
     - enforce_toplevel: False
     - watch:
@@ -27,26 +28,26 @@ exiftool-extract:
 
 exiftool-rename:
   file.rename:
-    - name: 'C:\standalone\exiftool\exiftool.exe'
-    - source: 'C:\standalone\exiftool\exiftool(-k).exe'
+    - name: '{{ inpath }}\exiftool\exiftool.exe'
+    - source: '{{ inpath }}\exiftool\exiftool(-k).exe'
     - force: True
     - require:
       - archive: exiftool-extract
 
 exiftool-kml-fmt:
   file.managed:
-    - name: 'C:\standalone\exiftool\kml.fmt'
+    - name: '{{ inpath }}\exiftool\kml.fmt'
     - source: salt://cpcwin/files/kml.fmt
     - makedirs: True
 
 exiftool-kml-batch:
   file.managed:
-    - name: 'C:\standalone\exiftool\EXIF_Tool.bat'
+    - name: '{{ inpath }}\exiftool\EXIF_Tool.bat'
     - source: salt://cpcwin/files/EXIF_Tool.bat
     - makedirs: True
 
 exiftool-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\exiftool\'
+    - name: '{{ inpath }}\exiftool\'
     - require:
       - file: exiftool-rename

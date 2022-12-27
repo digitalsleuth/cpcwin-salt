@@ -7,7 +7,7 @@
 # Version: 0.0
 # Notes: 
 
-{% set user = salt['pillar.get']('cpcwin_user', 'forensics') %}
+{% set user = salt['pillar.get']('cpcwin_user', 'user') %}
 
 include:
   - cpcwin.config.user
@@ -44,6 +44,17 @@ wsl-config-stager-customize:
     - count: 1
     - require:
       - file: wsl-config-stager
+      - user: cpcwin-user-{{ user }}
+
+wsl-config-stager-customize-path:
+  file.replace:
+    - name: 'C:\salt\tempdownload\wsl-config.cmd'
+    - pattern: _this_path_
+    - repl: {{ inpath | regex_escape }}
+    - count: 1
+    - require:
+      - file: wsl-config-stager
+      - file: wsl-config-stager-customize
       - user: cpcwin-user-{{ user }}
 
 wsl-config-run-on-reboot:

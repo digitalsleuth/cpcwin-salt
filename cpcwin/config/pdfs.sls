@@ -7,6 +7,7 @@
 # Version: 
 # Notes: Source https://github.com/teamdfir/sift-saltstack/blob/master/sift/config/user/pdfs.sls and WIN-FOR tool list
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 {%-
@@ -87,7 +88,7 @@ set pdfs = [
     "id": "cpcwin-tool-list",
     "filename": "CPC-WIN-Tool-List.pdf",
     "source": "salt://cpcwin/files/CPC-WIN-Tool-List.pdf",
-    "hash": "189cf22af1106c7e6d3940b0bd9eb6c20573f168ba157e34191cab50e2dcab89"
+    "hash": "54da449f71fe789910297b0eb03ec942344316a746a86ad6088a9ad685bdc6ff"
   },
 
 ]
@@ -96,7 +97,7 @@ set pdfs = [
 {% for pdf in pdfs %}
 cpcwin-pdf-{{ pdf.id }}:
   file.managed:
-    - name: 'C:\standalone\references\{{ pdf.filename }}'
+    - name: '{{ inpath }}\references\{{ pdf.filename }}'
     - source: {{ pdf.source }}
     - source_hash: sha256={{ pdf.hash }}
     - makedirs: True
@@ -106,7 +107,7 @@ cpcwin-pdf-{{ pdf.id }}:
 cpcwin-tool-list-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\CPC-WIN-Tool-List.lnk'
-    - target: 'C:\standalone\references\CPC-WIN-Tool-List.pdf'
+    - target: '{{ inpath }}\references\CPC-WIN-Tool-List.pdf'
     - force: True
-    - working_dir: 'C:\standalone\references\'
+    - working_dir: '{{ inpath }}\references\'
     - makedirs: True

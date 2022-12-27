@@ -4,7 +4,7 @@
 # Category: Requirements
 # Author: Adobe
 # License: https://helpx.adobe.com/ca/reader/acrobat-copyright-trademarks-third-party-notices.html
-# Version: 22.003.20262
+# Version: 22.003.20282
 # Notes: 
 
 adobereader:

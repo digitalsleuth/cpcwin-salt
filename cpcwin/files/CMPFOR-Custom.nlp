@@ -32,7 +32,7 @@ ShortDesc=Active@ Disk Editor is an advanced tool for viewing and editing of raw
 LongDesc=
 
 [Software2]
-exe=C:\standalone\arsenal\ArsenalImageMounter.exe
+exe=PLACEHOLDER_PATH\arsenal\ArsenalImageMounter.exe
 url=https://arsenalrecon.com/downloads/
 group=1
 Name=Arsenal Image Mounter (Free version)
@@ -41,7 +41,7 @@ ShortDesc=Powerful Image Mounter, mounts more types of images than FTK.
 LongDesc=Consider buying the Pro Version for advanced features.
 
 [Software3]
-exe=C:\standalone\hibernation-recon\HibernationRecon.exe
+exe=PLACEHOLDER_PATH\hibernation-recon\HibernationRecon.exe
 url=https://arsenalrecon.com/downloads/
 group=1
 Name=Hibernation Recon
@@ -50,7 +50,7 @@ ShortDesc=Hibernation Recon reconstructs active memory from Windows XP, Vista, 7
 LongDesc=
 
 [Software4]
-exe=C:\standalone\bitrecover-eml-viewer\bitrecover-eml-viewer.exe
+exe=PLACEHOLDER_PATH\bitrecover-eml-viewer\bitrecover-eml-viewer.exe
 url=https://www.bitrecover.com/free/eml-viewer/
 group=1
 Name=EML Viewer
@@ -68,7 +68,7 @@ ShortDesc=Tool for decoding time stamps into different formats.
 LongDesc=
 
 [Software6]
-exe=C:\standalone\ExifTool-KML-Creator\EXIF_Tool.bat
+exe=PLACEHOLDER_PATH\ExifTool-KML-Creator\EXIF_Tool.bat
 url=https://www.exiftool.org/
 group=0
 Name=KMLcreator
@@ -86,7 +86,7 @@ ShortDesc=FTK Imager 4.7.0.19
 LongDesc=
 
 [Software8]
-exe=C:\standalone\glossary-generator\GG.exe
+exe=PLACEHOLDER_PATH\glossary-generator\GG.exe
 url=
 group=1
 Name=Glossary Generator
@@ -95,7 +95,7 @@ ShortDesc=Glossary Generator by Jad Saliba (Founder of Magnet Forensics)
 LongDesc=
 
 [Software9]
-exe=C:\standalone\Hex2GUID\HEX2GUID.cmd
+exe=PLACEHOLDER_PATH\Hex2GUID\HEX2GUID.cmd
 url=
 group=0
 Name=HEX2GUID
@@ -104,7 +104,7 @@ ShortDesc=Find GPT GUID from HEX found at Physical Offset 56 / 16 bytes of a dis
 LongDesc=
 
 [Software10]
-exe=C:\standalone\regripper\rr.exe
+exe=PLACEHOLDER_PATH\regripper\rr.exe
 url=https://github.com/keydet89/RegRipper3.0
 group=1
 Name=RegRipper
@@ -114,7 +114,7 @@ ShortDesc=Generates report on processed HIVE.
 LongDesc= Does NOT read transation logs, need to feed it clean hive if thats what you want.
 
 [Software11]
-exe=C:\standalone\usbdetective\USB Detective.exe
+exe=PLACEHOLDER_PATH\usbdetective\USB Detective.exe
 url=https://usbdetective.com/
 group=1
 Name=USBDetective
@@ -123,7 +123,7 @@ ShortDesc=USB Detective
 LongDesc=The most thorough tool for analysing forensic artifacts relating to USB devices. Missing some accurate times when License not used!
 
 [Software12]
-exe=C:\standalone\usb-write-blocking\USB-Registry-Write-Block.cmd
+exe=PLACEHOLDER_PATH\usb-write-blocking\USB-Registry-Write-Block.cmd
 url=
 group=0
 Name=USBWriteBlocker
@@ -132,7 +132,7 @@ ShortDesc=Block all OS writes to a USB device, even newer SCSI devices.
 LongDesc=Special tools that bypass the operating system and perform Direct hardware (WinHex, CRU Writeblock checker) will write to a device, so make sure you enable, acquire, unplug and dont leave evidence in for extended time (months).
 
 [Software13]
-exe=C:\standalone\pilfer\pilfer.bat
+exe=PLACEHOLDER_PATH\pilfer\pilfer.bat
 url=
 group=0
 Name=Pilfer

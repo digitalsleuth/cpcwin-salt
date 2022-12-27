@@ -1,10 +1,36 @@
+{% set user = salt['pillar.get']('cpcwin_user', 'user') %}
+{% set all_users = salt['user.list_users']() %}
+{% if user in all_users %}
+  {% set home = salt['user.info'](user).home %}
+{% else %}
+  {% set home = "C:\\Users\\" + user %}
+{% endif %}
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set hash = 'c1bae838ab7759dbccac5fe44827f770bdaec4009c190e4edc218beb8f3d637c' %}
 {% set case_folders = ['Evidence', 'Export', 'Temp', 'Xways'] %}
+{% set portals_configs = ['portals.ptl','globalsettings.ptl'] %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+{% set shortcuts = [('Acquisition and Analysis', ['FTK Imager','Active@ Disk Editor\Active@ Disk Editor','Arsenal Image Mounter','Autopsy\Autopsy 4.19.3','Magnet AXIOM\AXIOM Examine','Magnet AXIOM\AXIOM Process','gkape','Magnet ACQUIRE\Magnet ACQUIRE','Redline\Redline','Tableau\Tableau Imager\Tableau Imager','VeraCrypt 1.25.9\VeraCrypt','X-Ways']),
+                        ('Browsers', ['Firefox','Google Chrome','Google Earth Pro','Microsoft Edge']),
+                        ('Databases', ['ADOQuery','DataEdit','DB Browser (SQLCipher)','DB Browser (SQLite)','DBeaver Community\DBeaver','SDBExplorer','SQLiteQuery','SQLiteStudio\SQLiteStudio']),
+                        ('Document Viewers', ['Acrobat Reader','EZViewer','Notepad++','Sublime Text','Visual Studio Code\Visual Studio Code']),
+                        ('E-mail', ['EHB','BitRecover EML Viewer','Kernel Exchange EDB Viewer\Kernel Exchange EDB Viewer','Kernel OST Viewer\Kernel OST Viewer','Kernel Outlook PST Viewer\Kernel Outlook PST Viewer','MailView','SysTools Outlook PST Viewer\SysTools Outlook PST Viewer']),
+                        ('Log Parsers', ['EventFinder','EZViewer','LogParser-Studio','LogViewer2']),
+                        ('Programming', ['Python 3.10\IDLE (Python 3.10 64-bit)','Visual Studio Code\Visual Studio Code','Windows PowerShell\Windows PowerShell ISE']),
+                        ('Raw Parsers', ['Bulk Extractor 1.5.5\BEViewer with Bulk Extractor 1.5.5 (64-bit)','CyberChef','Digital Detective\DCode v5\DCode v5.5','HHD Hex Editor Neo\Hex Editor Neo','HEXEdit','HxD Hex Editor\HxD','JSONView','Passware\Encryption Analyzer 2023 v1\Passware Encryption Analyzer 2023 v1 (64-bit)','WinHex','XMLView']),
+                        ('Terminals', ['Windows PowerShell\Windows PowerShell ISE']),
+                        ('Utilities', ['Digital Detective\DCode v5\DCode v5.5','FastCopy','Glossary Generator','Hasher','IrfanView\IrfanView 64 4.60',"Nuix\\Nuix Evidence Mover\\Nuix Evidence Mover",'Rufus','USB Write Blocker','WindowGrid']),
+                        ('Windows Analysis', ['AutoRunner','JumpListExplorer','MFTBrowser','MFTExplorer','NirLauncher','NTFS Log Tracker','RegistryExplorer','RegRipper','SE','ShadowExplorer','ShellBagsExplorer','TimelineExplorer']),
+                        ('Write Blockers', ['Tableau\Tableau Firmware Update\Tableau Firmware Update','USB Write Blocker','CDSG\WriteBlocking Validation Utility\WriteBlocking Validation Utility'])
+                       ] %}
+
+include:
+  - cpcwin.packages.portals
+  - cpcwin.config.user
 
 cpcwin-theme-wallpaper-source:
   file.managed:
-    - name: 'C:\standalone\cpc-wallpaper-cmpfor-4k.png'
+    - name: '{{ inpath }}\cpc-wallpaper-cmpfor-4k.png'
     - source: salt://cpcwin/theme/cpc-wallpaper-cmpfor-4k.png
     - source_hash: sha256={{ hash }}
     - makedirs: True
@@ -22,7 +48,7 @@ cpcwin-theme-set-wallpaper:
     - name: HKEY_CURRENT_USER\Control Panel\Desktop
     - vname: WallPaper
     - vtype: REG_SZ
-    - vdata: 'C:\standalone\cpc-wallpaper-cmpfor-4k.png'
+    - vdata: '{{ inpath }}\cpc-wallpaper-cmpfor-4k.png'
 
 cpcwin-theme-set-wallpaper-center:
   reg.present:
@@ -43,38 +69,6 @@ cpcwin-theme-update-wallpaper:
     - name: 'RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True'
     - shell: cmd
 
-nimi-taskkill:
-  cmd.run:
-    - name: 'taskkill /F /IM "Nimi Places.exe"'
-    - bg: True
-
-nimi-setup:
-  file.managed:
-    - name: 'C:\salt\tempdownload\nimi.zip'
-    - source: salt://cpcwin/files/nimi.zip
-    - makedirs: True
-
-nimi-extract:
-  archive.extracted:
-    - name: 'C:\standalone\nimi\'
-    - source: 'C:\salt\tempdownload\nimi.zip'
-    - enforce_toplevel: False
-    - require:
-      - file: nimi-setup
-
-nimi-autostart:
-  reg.present:
-    - name: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
-    - vname: NimiPlaces
-    - vtype: REG_SZ
-    - vdata: '"C:\standalone\nimi\nimi.cmd"'
-
-cleanup-nimi:
-  file.absent:
-    - name: 'C:\salt'
-    - require:
-      - reg: nimi-autostart
-
 {% for folder in case_folders %}
 
 make-{{ folder }}-folder:
@@ -86,13 +80,92 @@ make-{{ folder }}-folder:
 
 {% endfor %}
 
-nimi-shortcut:
-  file.shortcut:
-    - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\Nimi Places.lnk'
-    - target: 'C:\standalone\nimi\nimi.cmd'
-    - force: True
-    - working_dir: 'C:\standalone\nimi'
-    - icon_location: 'C:\standalone\nimi\Nimi Places.exe'
+{% for folder in shortcuts %}
+shortcut-{{ folder[0] }}:
+  file.directory:
+    - name: '{{ inpath }}\Portals\{{ folder[0] }}'
     - makedirs: True
+    - replace: True
+    - win_inheritance: True
+{% for shortcut in folder[1] %}
+{% set shortcut = shortcut + ".lnk" %}
+shortcut-{{ folder[0] }}-{{ shortcut }}:
+  file.copy:
+    - name: '{{ inpath }}\Portals\{{ folder[0] }}\'
+    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\{{ shortcut }}'
+    - preserve: True
+    - subdir: True
+{% endfor %}
+{% endfor %}
+
+{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\X-Ways.lnk') %}
+xways-shortcut-copy:
+  file.copy:
+    - name: '{{ inpath }}\Portals\Acquisition and Analysis\X-Ways.lnk'
+    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\X-Ways.lnk'
+    - preserve: True
+
+{% else %}
+no-xways-shortcut-found:
+  test.nop
+{% endif %}
+
+{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\WinHex.lnk') %}
+winhex-shortcut-copy:
+  file.copy:
+    - name: '{{ inpath }}\Portals\Raw Parsers and Decoders\WinHex.lnk'
+    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WinHex.lnk'
+    - preserve: True
+
+{% else %}
+no-winhex-shortcut-found:
+  test.nop
+{% endif %}
+
+{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\WSL.lnk') %}
+wsl-shortcut-copy:
+  file.copy:
+    - name: '{{ inpath }}\Portals\Terminals\WSL.lnk'
+    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WSL.lnk'
+    - preserve: True
+
+{% else %}
+no-wsl-shortcut-found:
+  test.nop
+{% endif %}
+
+portals-end-process:
+  cmd.run:
+    - name: 'taskkill /F /IM "Portals.exe"'
+    - bg: True
     - require:
-      - archive: nimi-extract
+      - sls: cpcwin.packages.portals
+
+{% for config in portals_configs %}
+portals-{{ config }}-copy:
+  file.managed:
+    - name: '{{ home }}\AppData\Local\Portals\{{ config }}'
+    - source: salt://cpcwin/files/{{ config }}
+    - makedirs: True
+    - replace: True
+    - require:
+      - user: cpcwin-user-{{ user }}
+      - sls: cpcwin.packages.portals
+
+portals-{{ config }}-placeholder-replace:
+  file.replace:
+    - name: '{{ home }}\AppData\Local\Portals\{{ config }}'
+    - pattern: PLACEHOLDER_PATH
+    - repl: {{ inpath | regex_escape }}
+    - require:
+      - file: portals-{{ config }}-copy
+{% endfor %}
+
+portals-auto-run:
+  reg.present:
+    - name: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    - vname: Portals
+    - vtype: REG_SZ
+    - vdata: 'C:\Program Files\Portals\Portals.exe'
+    - require:
+      - sls: cpcwin.packages.portals

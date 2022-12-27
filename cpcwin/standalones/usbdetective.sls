@@ -7,6 +7,7 @@
 # Version: 1.6.2
 # Notes: 
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 usbdetective-download:
@@ -18,7 +19,7 @@ usbdetective-download:
 
 usbdetective-extract:
   archive.extracted:
-    - name: 'C:\standalone\usbdetective\'
+    - name: '{{ inpath }}\usbdetective\'
     - source: 'C:\salt\tempdownload\USBDetective.zip'
     - enforce_toplevel: False
     - watch:
@@ -26,14 +27,14 @@ usbdetective-extract:
 
 usbdetective-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\usbdetective'
+    - name: '{{ inpath }}\usbdetective'
 
 cpcwin-standalones-usbdetective-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\USB Detective.lnk'
-    - target: 'C:\standalone\usbdetective\USB Detective.exe'
+    - target: '{{ inpath }}\usbdetective\USB Detective.exe'
     - force: True
-    - working_dir: 'C:\standalone\usbdetective\'
+    - working_dir: '{{ inpath }}\usbdetective\'
     - makedirs: True
     - require:
       - archive: usbdetective-extract

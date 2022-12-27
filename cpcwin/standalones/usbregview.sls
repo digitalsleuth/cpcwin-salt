@@ -7,13 +7,15 @@
 # Version: 20220413b
 # Notes: 
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
+
 include:
   - cpcwin.packages.git
 
 usbregview-git:
   git.latest:
     - name: https://github.com/ms-cpc/USBRegview
-    - target: 'C:\standalone\usbregview'
+    - target: '{{ inpath }}\usbregview'
     - rev: main
     - force_clone: True
     - force_reset: True
@@ -22,4 +24,4 @@ usbregview-git:
 
 usbregview-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\usbregview\'
+    - name: '{{ inpath }}\usbregview\'

@@ -7,14 +7,16 @@
 # Version: 2022050a
 # Notes:
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
+
 hex2guid-cmd:
   file.managed:
-    - name: 'C:\standalone\hex2guid\hex2guid.cmd'
+    - name: '{{ inpath }}\hex2guid\hex2guid.cmd'
     - source: salt://cpcwin/files/HEX2GUID.cmd
     - makedirs: True
 
 hex2guid-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\hex2guid\'
+    - name: '{{ inpath }}\hex2guid\'
     - require:
       - file: hex2guid-cmd

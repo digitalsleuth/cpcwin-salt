@@ -39,6 +39,7 @@ include:
   - cpcwin.standalones.iphone-analyzer
   - cpcwin.standalones.mftbrowser
   - cpcwin.standalones.shadowexplorer
+  - cpcwin.standalones.ntfs-log-tracker
 
 cpcwin-standalones:
   test.nop:
@@ -83,3 +84,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.iphone-analyzer
       - sls: cpcwin.standalones.mftbrowser
       - sls: cpcwin.standalones.shadowexplorer
+      - sls: cpcwin.standalones.ntfs-log-tracker

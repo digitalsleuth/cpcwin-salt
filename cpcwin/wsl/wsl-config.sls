@@ -1,3 +1,4 @@
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set hash = '4ed521a6f727c2a5352b2d28e28cfd8639e9c8cbc1b7a35aa7e003464c4fc139' %}
 
@@ -21,7 +22,7 @@ wsl-get-template:
 
 wsl-make-install-directory:
   file.directory:
-    - name: 'C:\standalone\wsl\'
+    - name: '{{ inpath }}\wsl\'
     - win_inheritance: True
     - makedirs: True
     - require:
@@ -29,7 +30,7 @@ wsl-make-install-directory:
 
 wsl-import-template:
   cmd.run:
-    - name: 'wsl --import CPC-WIN C:\standalone\wsl\ C:\salt\tempdownload\CPC-WIN-20.04.tar'
+    - name: 'wsl --import CPC-WIN {{ inpath }}\wsl\ C:\salt\tempdownload\CPC-WIN-20.04.tar'
     - shell: cmd
     - require:
       - file: wsl-get-template
@@ -69,6 +70,13 @@ wsl-chmod-remnux:
     - shell: cmd
     - require:
       - cmd: wsl-get-remnux
+
+wsl-fix-salt-python-importlib:
+  cmd.run:
+    - name: 'wsl echo forensics | wsl sudo -S python3 -m pip install "importlib-metadata<5.0.0"'
+    - shell: cmd
+    - require:
+      - cmd: wsl-chmod-remnux
 
 wsl-run-remnux:
   cmd.run:

@@ -7,6 +7,7 @@
 # Version: Various
 # Notes:
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set files = [
                 ('DriverList', 'dbc5736808cf7203cf289a269cc27cbcf90a8c69e03eed60ae361ad29da08d28'),
@@ -33,7 +34,7 @@ ntcore-download-{{ file }}:
 
 ntcore-unzip-{{ file }}:
   archive.extracted:
-    - name: C:\standalone\ntcore\{{ file }}
+    - name: {{ inpath }}\ntcore\{{ file }}
     - source: C:\salt\tempdownload\{{ file }}.zip
     - enforce_toplevel: false
     - require:
@@ -46,9 +47,9 @@ ntcore-unzip-{{ file }}:
 cpcwin-standalones-ntcore-{{ exe }}-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\{{ exe }}.lnk'
-    - target: 'C:\standalone\ntcore\{{ folder }}\{{ exe }}.exe'
+    - target: '{{ inpath }}\ntcore\{{ folder }}\{{ exe }}.exe'
     - force: True
-    - working_dir: 'C:\standalone\ntcore\{{ folder }}\'
+    - working_dir: '{{ inpath }}\ntcore\{{ folder }}\'
     - makedirs: True
 
 {% endfor %}
@@ -56,33 +57,33 @@ cpcwin-standalones-ntcore-{{ exe }}-shortcut:
 cpcwin-standalones-ntcore-netunpack-x64-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\NETUnpack-x64.lnk'
-    - target: 'C:\standalone\ntcore\NETUnpack_x64\NETUnpack.exe'
+    - target: '{{ inpath }}\ntcore\NETUnpack_x64\NETUnpack.exe'
     - force: True
-    - working_dir: 'C:\standalone\ntcore\NETUnpack_x64\'
+    - working_dir: '{{ inpath }}\ntcore\NETUnpack_x64\'
     - makedirs: True
 
 cpcwin-standalones-ntcore-netunpack-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\NETUnpack.lnk'
-    - target: 'C:\standalone\ntcore\NETUnpack\NETUnpack.exe'
+    - target: '{{ inpath }}\ntcore\NETUnpack\NETUnpack.exe'
     - force: True
-    - working_dir: 'C:\standalone\ntcore\NETUnpack\'
+    - working_dir: '{{ inpath }}\ntcore\NETUnpack\'
     - makedirs: True
 
 cpcwin-standalones-ntcore-dynlogger-x64-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\DynLogger-x64.lnk'
-    - target: 'C:\standalone\ntcore\DynLogger_x64\DynLogger.exe'
+    - target: '{{ inpath }}\ntcore\DynLogger_x64\DynLogger.exe'
     - force: True
-    - working_dir: 'C:\standalone\ntcore\DynLogger_x64\'
+    - working_dir: '{{ inpath }}\ntcore\DynLogger_x64\'
     - makedirs: True
 
 cpcwin-standalones-ntcore-dynlogger-x86-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\DynLogger-x86.lnk'
-    - target: 'C:\standalone\ntcore\DynLogger_x86\DynLogger.exe'
+    - target: '{{ inpath }}\ntcore\DynLogger_x86\DynLogger.exe'
     - force: True
-    - working_dir: 'C:\standalone\ntcore\DynLogger_x86\'
+    - working_dir: '{{ inpath }}\ntcore\DynLogger_x86\'
     - makedirs: True
 
 ntcore-explorersuite:

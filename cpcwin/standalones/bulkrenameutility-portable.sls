@@ -7,6 +7,7 @@
 # Version: 3.4.4
 # Notes: 
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 bulkrenameutility-portable-download:
   file.managed:
     - name: 'C:\salt\tempdownload\BRU_NoInstall.zip'
@@ -16,7 +17,7 @@ bulkrenameutility-portable-download:
 
 bulkrenameutility-portable-extract:
   archive.extracted:
-    - name: 'C:\standalone\bulk-rename-utility-portable\'
+    - name: '{{ inpath }}\bulk-rename-utility-portable\'
     - source: 'C:\salt\tempdownload\BRU_NoInstall.zip'
     - enforce_toplevel: False
     - require:

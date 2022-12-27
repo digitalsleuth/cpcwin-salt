@@ -7,7 +7,7 @@
 # Version: 2.17.8.30
 # Notes:
 
-{% set user = salt['pillar.get']('cpcwin_user', 'forensics') %}
+{% set user = salt['pillar.get']('cpcwin_user', 'user') %}
 
 include:
   - cpcwin.config.user

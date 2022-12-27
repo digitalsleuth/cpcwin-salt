@@ -20,30 +20,30 @@ ShowAll=1
 
 
 [Software0]
-exe=C:\standalone\ntcore\Filtermon\x86\FilterMon.exe
+exe=PLACEHOLDER_PATH\ntcore\Filtermon\x86\FilterMon.exe
 help=
 url=http://www.ntcore.com/filtermon.php
-exe64=C:\standalone\ntcore\Filtermon\x64\FilterMon.exe
+exe64=PLACEHOLDER_PATH\ntcore\Filtermon\x64\FilterMon.exe
 group=0
 AppName=Filter Monitor
 ShortDesc=This utility can list kernel mode filters and also unregister them
 LongDesc=This utility can list kernel mode filters and also unregister them. Monitored filters are, for instance, registry filters, create process and thread notifications. FilterMon comes both for x64 and x86 and it should work on all Windows systems from Vista RTM to Windows 7 RTM. I can't guarantee that it will work on future versions of Windows as it relies heavily on system internals.
 
 [Software1]
-exe=C:\standalone\ntcore\DriverList\DriverList_x86.exe
+exe=PLACEHOLDER_PATH\ntcore\DriverList\DriverList_x86.exe
 help=
 url=http://www.ntcore.com/drvlist.php
-exe64=C:\standalone\ntcore\DriverList\DriverList_x64.exe
+exe64=PLACEHOLDER_PATH\ntcore\DriverList\DriverList_x64.exe
 group=0
 AppName=Driver List
 ShortDesc=Very small utility which lists the loaded drivers
 LongDesc=Very small utility which lists the loaded drivers. The utility is 64-bit compatible and can generate a report file from the list.
 
 [Software2]
-exe=C:\standalone\ntcore\DynLogger_x86\DynLogger.exe
+exe=PLACEHOLDER_PATH\ntcore\DynLogger_x86\DynLogger.exe
 help=
 url=http://www.ntcore.com/dynlogger.php
-exe64=C:\standalone\ntcore\DynLogger_x64\DynLogger.exe
+exe64=PLACEHOLDER_PATH\ntcore\DynLogger_x64\DynLogger.exe
 group=1
 AppName=DynLogger
 ShortDesc=Logs all dynamically retrieved functions by reporting the module name and the requested function
@@ -60,7 +60,7 @@ ShortDesc=A freeware PE identifier
 LongDesc=A freeware PE identifier. This tool was originally designed to be part of the Explorer Suite II, but it can be downloaded separately as well. The PE Detective can scan single PE files or entire directories (also recursevely) and generate complete reports. The PE Detective is deployed along with the Signature Explorer, which is an advanced signature manager to check collisions, handle, update and retrieve signatures
 
 [Software4]
-exe=C:\standalone\ntcore\WIM_Installer\WIM Installer.exe
+exe=PLACEHOLDER_PATH\ntcore\WIM_Installer\WIM Installer.exe
 help=
 url=https://ntcore.com/files/WIM_Installer.zip
 exe64=
@@ -70,10 +70,10 @@ ShortDesc=In a extremely easy way setups based on wim images
 LongDesc=A little utility created to handle from a graphical interface and in a extremely easy way setups based on wim images. Regardeless if they have been released by microsoft or not.
 
 [Software5]
-exe=C:\standalone\ntcore\NETUnpack\NETUnpack.exe
+exe=PLACEHOLDER_PATH\ntcore\NETUnpack\NETUnpack.exe
 help=
 url=http://www.ntcore.com/netunpack.php
-exe64=C:\standalone\ntcore\NETUnpack_x64\NETUnpack.exe
+exe64=PLACEHOLDER_PATH\ntcore\NETUnpack_x64\NETUnpack.exe
 group=1
 AppName=.NET Generic Unpacker
 ShortDesc=Dump .NET packed applications

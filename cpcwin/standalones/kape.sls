@@ -4,11 +4,12 @@
 # Category: Windows Analysis
 # Author: Eric Zimmerman / Kroll
 # License: https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape
-# Version: 1.2.0.0
+# Version: 1.3.0.0
 # Notes: 
 
-{% set version = '1.2.0.0' %}
-{% set hash = '5445407833b29afbca4300e930813faa5c101ad628126d16e9f90857c249444a' %}
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
+{% set version = '1.3.0.0' %}
+{% set hash = '564022CA68806AD8A1DF105DB460ADE87FE07E457BCAEC467A6A92017DEB37E9' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 kape-download:
@@ -28,7 +29,7 @@ kape-extract:
 
 kape-folder-move:
   file.rename:
-    - name: 'C:\standalone\kape'
+    - name: '{{ inpath }}\kape'
     - source: 'C:\salt\tempdownload\KAPE\'
     - force: True
     - makedirs: True
@@ -37,14 +38,14 @@ kape-folder-move:
 
 kape-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\kape\'
+    - name: '{{ inpath }}\kape\'
 
 cpcwin-standalones-gkape-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\gkape.lnk'
-    - target: 'C:\standalone\kape\gkape.exe'
+    - target: '{{ inpath }}\kape\gkape.exe'
     - force: True
-    - working_dir: 'C:\standalone\kape\'
+    - working_dir: '{{ inpath }}\kape\'
     - makedirs: True
     - require:
       - file: kape-folder-move

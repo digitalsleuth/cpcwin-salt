@@ -30,5 +30,5 @@ echo %filename% does not exist, out put will be %filename%.kml
 ECHO Click and drag photos folder to this window and press Enter.
 SET /p path=:
 :: Run EXIFTool Command
-exiftool -n -r -q -p C:\standalone\exiftool\kml.fmt %PATH%>%filename%.KML
+exiftool -n -r -q -p PLACEHOLDER_PATH\exiftool\kml.fmt %PATH%>%filename%.KML
 pause

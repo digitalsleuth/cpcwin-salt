@@ -7,6 +7,7 @@
 # Version: 1.2.2.85
 # Notes:
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set hash = '60BB6C8C6F24FDBBBB2A3EAA1F9601F21ED36327F57735FE3E8F3E25C6619AD6' %}
 {% set version = '1.2.2.85' %}
 {% set file_value = 'PowEiY4S#2T087NqeVypCD77MmINi7jEoDKOPsVpnRMwQJKXQZys' %}
@@ -22,7 +23,7 @@ hiber-recon-remove-previous:
 
 hiber-recon-download:
   cmd.run:
-    - name: 'C:\standalone\megatools\megatools.exe dl https://mega.nz/file/{{ file_value }} --path C:\salt\tempdownload'
+    - name: '{{ inpath }}\megatools\megatools.exe dl https://mega.nz/file/{{ file_value }} --path C:\salt\tempdownload'
     - shell: cmd
     - require:
       - sls: cpcwin.standalones.megatools
@@ -30,7 +31,7 @@ hiber-recon-download:
 
 hiber-recon-extract:
   archive.extracted:
-    - name: 'C:\standalone\'
+    - name: '{{ inpath }}\'
     - enforce_toplevel: True
     - source: 'C:\salt\tempdownload\Hibernation-Recon-v{{ version }}.zip'
     - source_hash: sha256={{ hash }}
@@ -42,8 +43,8 @@ hiber-recon-extract:
 
 hiber-recon-folder-rename:
   file.rename:
-    - name: 'C:\standalone\hibernation-recon'
-    - source: 'C:\standalone\Hibernation-Recon-v{{ version }}\'
+    - name: '{{ inpath }}\hibernation-recon'
+    - source: '{{ inpath }}\Hibernation-Recon-v{{ version }}\'
     - force: True
     - makedirs: True
     - require:
@@ -52,9 +53,9 @@ hiber-recon-folder-rename:
 cpcwin-standalones-hiber-recon-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\Hibernation Recon.lnk'
-    - target: 'C:\standalone\hibernation-recon\HibernationRecon.exe'
+    - target: '{{ inpath }}\hibernation-recon\HibernationRecon.exe'
     - force: True
-    - working_dir: 'C:\standalone\hibernation-recon\'
+    - working_dir: '{{ inpath }}\hibernation-recon\'
     - makedirs: True
     - require:
       - sls: cpcwin.standalones.megatools
@@ -64,6 +65,6 @@ cpcwin-standalones-hiber-recon-shortcut:
 
 cpcwin-standalones-hiber-recon-path:
   win_path.exists:
-    - name: 'C:\standalone\hibernation-recon\'
+    - name: '{{ inpath }}\hibernation-recon\'
     - require:
       - file: cpcwin-standalones-hiber-recon-shortcut

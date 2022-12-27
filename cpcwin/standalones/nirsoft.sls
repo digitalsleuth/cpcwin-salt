@@ -7,6 +7,7 @@
 # Version: 1.23.65
 # Notes: 
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set version = '1.23.65' %}
 {% set hash = 'e89d352d37940b7dbd9dbb8503a4526e50c0ae82f38ac639527283925951d597' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
@@ -20,7 +21,7 @@ include:
 
 nirsoft-defender-exclusion:
   cmd.run:
-    - name: 'Add-MpPreference -ExclusionPath "C:\standalone\"'
+    - name: 'Add-MpPreference -ExclusionPath "{{ inpath }}\"'
     - shell: powershell
 
 nirsoft-download:
@@ -32,7 +33,7 @@ nirsoft-download:
 
 nirsoft-extract:
   cmd.run:
-    - name: '"C:\Program Files\7-Zip\7z.exe" x C:\salt\tempdownload\nirsoft_package_enc_{{ version }}.zip -o"C:\standalone\nirsoft\" -pnirsoft9876$ -y'
+    - name: '"C:\Program Files\7-Zip\7z.exe" x C:\salt\tempdownload\nirsoft_package_enc_{{ version }}.zip -o"{{ inpath }}\nirsoft\" -pnirsoft9876$ -y'
     - shell: cmd
     - require:
       - cmd: nirsoft-defender-exclusion
@@ -43,16 +44,16 @@ nirsoft-extract:
 cpcwin-standalones-nirsoft-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\NirLauncher.lnk'
-    - target: 'C:\standalone\nirsoft\NirLauncher.exe'
+    - target: '{{ inpath }}\nirsoft\NirLauncher.exe'
     - force: True
-    - working_dir: 'C:\standalone\nirsoft\'
+    - working_dir: '{{ inpath }}\nirsoft\'
     - makedirs: True
     - require:
       - cmd: nirsoft-extract
 
 cpcwin-standalones-nirsoft-cfg-replace:
   file.managed:
-    - name: 'C:\standalone\nirsoft\NirLauncher.cfg'
+    - name: '{{ inpath }}\nirsoft\NirLauncher.cfg'
     - source: salt://cpcwin/files/NirLauncher.cfg
     - replace: True
     - require:
@@ -64,7 +65,7 @@ cpcwin-standalones-nirsoft-cfg-replace:
 
 cpcwin-standalones-nirsoft-{{ nlp }}:
   file.managed:
-    - name: 'C:\standalone\nirsoft\{{ nlp }}'
+    - name: '{{ inpath }}\nirsoft\{{ nlp }}'
     - source: salt://cpcwin/files/{{ nlp }}
     - makedirs: True
 

@@ -7,6 +7,7 @@
 # Version: 1.18.1
 # Notes: 
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
@@ -16,7 +17,7 @@ include:
 cpcwin-python3-ileapp-source:
   git.latest:
     - name: https://github.com/abrignoni/ileapp
-    - target: 'C:\standalone\ileapp'
+    - target: '{{ inpath }}\ileapp'
     - rev: master
     - force_clone: True
     - force_reset: True
@@ -26,7 +27,7 @@ cpcwin-python3-ileapp-source:
 
 cpcwin-python3-ileapp-requirements:
   pip.installed:
-    - requirements: 'C:\standalone\ileapp\requirements.txt'
+    - requirements: '{{ inpath }}\ileapp\requirements.txt'
     - bin_env: 'C:\Program Files\Python310\python.exe'
     - require:
       - git: cpcwin-python3-ileapp-source
@@ -35,8 +36,8 @@ cpcwin-python3-ileapp-requirements:
 cpcwin-python3-ileapp-header:
   file.prepend:
     - names:
-      - 'C:\standalone\ileapp\ileapp.py'
-      - 'C:\standalone\ileapp\ileappGUI.py'
+      - '{{ inpath }}\ileapp\ileapp.py'
+      - '{{ inpath }}\ileapp\ileappGUI.py'
     - text: '#!/usr/bin/python3'
     - require:
       - git: cpcwin-python3-ileapp-source
@@ -44,11 +45,11 @@ cpcwin-python3-ileapp-header:
 
 cpcwin-python3-ileapp-env-vars:
   win_path.exists:
-    - name: 'C:\standalone\ileapp\'
+    - name: '{{ inpath }}\ileapp\'
 
 cpcwin-python3-ileapp-icon:
   file.managed:
-    - name: 'C:\standalone\abrignoni-logo.ico'
+    - name: '{{ inpath }}\abrignoni-logo.ico'
     - source: salt://cpcwin/files/abrignoni-logo.ico
     - source_hash: sha256=97ca171e939a3e4a3e51f4a66a46569ffc604ef9bb388f0aec7a8bceef943b98
     - makedirs: True
@@ -56,10 +57,10 @@ cpcwin-python3-ileapp-icon:
 cpcwin-python3-ileapp-gui-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\ILEAPP-GUI.lnk'
-    - target: 'C:\standalone\ileapp\ileappGUI.py'
+    - target: '{{ inpath }}\ileapp\ileappGUI.py'
     - force: True
-    - working_dir: 'C:\standalone\ileapp\'
-    - icon_location: 'C:\standalone\abrignoni-logo.ico'
+    - working_dir: '{{ inpath }}\ileapp\'
+    - icon_location: '{{ inpath }}\abrignoni-logo.ico'
     - makedirs: True
     - require:
       - git: cpcwin-python3-ileapp-source
