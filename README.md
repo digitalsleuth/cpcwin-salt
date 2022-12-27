@@ -17,31 +17,31 @@ Once you've run that, change to the directory where you've downloaded the instal
 ## Usage - Current CLI v3.0
 ```markup
 Usage (cpcwin-cli.ps1 or cpcwin-cli.exe):
-    cpcwin-cli -Install
-    cpcwin-cli -Install -User <user> -Mode <mode> -IncludeWsl -XUser forensics -XPass "<your_password>"
-    cpcwin-cli -Install -StandalonesPath "C:\standalones"
-    cpcwin-cli -WslOnly
-    cpcwin-cli -Update
-    cpcwin-cli -Upgrade
-    cpcwin-cli -Version
-    cpcwin-cli -Help
+  cpcwin-cli -Install
+  cpcwin-cli -Install -User <user> -Mode <mode> -IncludeWsl -XUser forensics -XPass "<your_password>"
+  cpcwin-cli -Install -StandalonesPath "C:\standalones"
+  cpcwin-cli -WslOnly
+  cpcwin-cli -Update
+  cpcwin-cli -Upgrade
+  cpcwin-cli -Version
+  cpcwin-cli -Help
 
 Options:
-    -Install          Installs the CPC-WIN environment
-    -User <user>      Choose the desired username for which to configure the installation
-    -Mode <mode>      There are two modes to choose from for the installation:
-                      addon: Install all of the tools, but don't do any customization
-                      dedicated: Assumes you want the full meal-deal, will install all packages and customization
-    -StandalonesPath  Choose the path for where the standalone executables will be downloaded
-    -Update           Identifies the current version of CPC-WIN and re-installs all states from that version
-    -Upgrade          Identifies the latest version of CPC-WIN and will install that version
-    -Version          Displays the current version of CPC-WIN (if installed) then exits
-    -XUser            The Username for the X-Ways portal - Required to download and install X-Ways
-    -XPass            The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
-    -IncludeWsl       Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
-                      This option assumes you also want the full CPC-WIN suite, install that first, then WSL
-    -WslOnly          If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
-    -Help             Self-explanatory
+  -Install          Installs the CPC-WIN environment
+  -User <user>      Choose the desired username for which to configure the installation
+  -Mode <mode>      There are two modes to choose from for the installation:
+                    addon: Install all of the tools, but don't do any customization
+                    dedicated: Assumes you want the full meal-deal, will install all packages and customization
+  -StandalonesPath  Choose the path for where the standalone executables will be downloaded
+  -Update           Identifies the current version of CPC-WIN and re-installs all states from that version
+  -Upgrade          Identifies the latest version of CPC-WIN and will install that version
+  -Version          Displays the current version of CPC-WIN (if installed) then exits
+  -XUser            The Username for the X-Ways portal - Required to download and install X-Ways
+  -XPass            The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
+  -IncludeWsl       Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
+                    This option assumes you also want the full CPC-WIN suite, install that first, then WSL
+  -WslOnly          If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
+  -Help             Self-explanatory
 ```  
 
 ## Issues
