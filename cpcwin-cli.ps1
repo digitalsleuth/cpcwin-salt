@@ -10,7 +10,7 @@
         Additionally, the CPC-WIN states allow for the automated installation of the Windows Subsystem for Linux v2, and comes with
         the REMnux and SIFT toolsets.
     .NOTES
-        Version        : 2.0
+        Version        : 3.0
         Author         : Corey Forman (https://github.com/digitalsleuth)
         Prerequisites  : Windows 10 1909 or later
                        : Set-ExecutionPolicy must allow for script execution
@@ -45,6 +45,7 @@
         states.
     .Example
         cpcwin-cli -Install -User forensics -Mode dedicated -IncludeWsl -XUser forensics -XPass "<your_password>"
+        cpcwin-cli -Install -StandalonesPath "C:\standalones"
         cpcwin-cli -Install
         cpcwin-cli -WslOnly
         cpcwin-cli -Version
@@ -57,6 +58,7 @@ param (
   [string]$Mode = "",
   [string]$XUser = "",
   [string]$XPass = "",
+  [string]$StandalonesPath = "",
   [switch]$Install,
   [switch]$Update,
   [switch]$Upgrade,
@@ -65,7 +67,7 @@ param (
   [switch]$WslOnly,
   [switch]$Help
 )
-[string]$installerVersion = 'v2.0'
+[string]$installerVersion = 'v3.0'
 [string]$saltstackVersion = '3005.1-3'
 [string]$saltstackFile = 'Salt-Minion-' + $saltstackVersion + '-Py3-AMD64-Setup.exe'
 [string]$saltstackHash = "9899DE61DF2782BCA8A896EB814BF2EA0E92C0B18BF91F7C747B60EBF1EBF72D"
@@ -218,6 +220,11 @@ function Install-CPCWIN {
         Write-Host "[!] The only valid modes are 'addon' or 'dedicated'." -ForegroundColor Red
         exit 1
     }
+    if ($StandalonesPath -eq "") {
+        $StandalonesPath = "C:\standalone"
+        } else {
+        $StandalonesPath = $StandalonesPath.TrimEnd('\')
+        }
     if ($Update) {
        if(-Not (Test-Path $versionFile)) {
            $CPCWINVersion = 'not installed'
@@ -259,7 +266,7 @@ function Install-CPCWIN {
         ((Get-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\cpcwin\standalones\x-ways.sls') -replace ' = "TOKENPLACEHOLDER"', (" = "+ '"' + $AuthToken + '"')) | Set-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\cpcwin\standalones\x-ways.sls'
         }
     Write-Host "[+] The CPC-WIN installer command is running, configuring for user $User - this will take a while... please be patient" -ForegroundColor Green
-    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls cpcwin.$Mode pillar=`"{'cpcwin_user': '$User'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
+    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls cpcwin.$Mode pillar=`"{'cpcwin_user': '$User', 'inpath': '$StandalonesPath'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
     if (-Not (Test-Path $logFile)) {
         $results=$failures=$errors=$null
 	} else {
@@ -281,14 +288,19 @@ function Install-CPCWIN {
         if ($results) {
             $results | Out-File "C:\cpcwin-results-$installVersion.log" -Append
             }
-        Invoke-WSLInstaller
+        Invoke-WSLInstaller -User $User -StandalonesPath $StandalonesPath
     }
 }
 
-function Invoke-WSLInstaller {
+function Invoke-WSLInstaller($User, $StandalonesPath) {
     if ($User -eq "") {
         $User = [System.Environment]::UserName
     }
+    if ($StandalonesPath -eq "") {
+        $StandalonesPath = "C:\standalone"
+        } else {
+        $StandalonesPath = $StandalonesPath.TrimEnd('\')
+        }
     $runningUser = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     if (-not $runningUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
         Write-Host "[!] Not running as administrator, please re-run this script as Administrator" -ForegroundColor Red
@@ -308,7 +320,7 @@ function Invoke-WSLInstaller {
 	} ElseIf ([System.Environment]::OSVersion.Version.Build -ge 15063) {
         Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
     }
-    Add-MpPreference -ExclusionPath "C:\standalone\wsl"
+    Add-MpPreference -ExclusionPath "$StandalonesPath\wsl"
     $wslLogFile = "C:\cpcwin-wsl.log"
     $wslErrorLog = "C:\cpcwin-wsl-errors.log"
     if (-Not (Test-Path "C:\ProgramData\Salt Project\Salt\srv\salt\cpcwin")) {
@@ -320,7 +332,7 @@ function Invoke-WSLInstaller {
     Write-Host "[+] Preparing for WSLv2 Installation" -ForegroundColor Green
     Write-Host "[-] This will process will automatically reboot the system and continue on the next login" -ForegroundColor Yellow
     Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls cpcwin.repos pillar=`"{'cpcwin_user': '$User'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
-    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls cpcwin.wsl pillar=`"{'cpcwin_user': '$User'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
+    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls cpcwin.wsl pillar=`"{'cpcwin_user': '$User', 'inpath': '$StandalonesPath'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
     ### If the above is successful, the following lines have no effect, as a reboot will have occurred.
     ### However, if they are not successful, the following will log the errors in a separate file for examination.
     $wslErrors = (Select-String -Path $wslLogFile -Pattern '          ID:' -Context 0,6 | ForEach-Object{$_.Line; $_.Context.DisplayPostContext + "`r-------------"})
@@ -333,19 +345,20 @@ function Show-CPCWINHelp {
     Write-Host -ForegroundColor Yellow @"
 Windows Forensics Environment (CPC-WIN) Installer $installerVersion
 Usage:
-    -Install      Installs the CPC-WIN environment
-    -User <user>  Choose the desired username for which to configure the installation
-    -Mode <mode>  There are two modes to choose from for the installation:
-                  addon: Install all of the tools, but don't do any customization
-                  dedicated: Assumes you want the full meal-deal, will install all packages and customization
-    -Update       Identifies the current version of CPC-WIN and re-installs all states from that version
-    -Upgrade      Identifies the latest version of CPC-WIN and will install that version
-    -Version      Displays the current version of CPC-WIN (if installed) then exits
-    -XUser        The Username for the X-Ways portal - Required to download and install X-Ways
-    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
-    -IncludeWsl   Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
-                  This option assumes you also want the full CPC-WIN suite, install that first, then WSL
-    -WslOnly      If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
+    -Install          Installs the CPC-WIN environment
+    -User <user>      Choose the desired username for which to configure the installation
+    -Mode <mode>      There are two modes to choose from for the installation:
+                      addon: Install all of the tools, but don't do any customization
+                      dedicated: Assumes you want the full meal-deal, will install all packages and customization
+    -StandalonesPath  Choose the path for where the standalone executables will be downloaded
+    -Update           Identifies the current version of CPC-WIN and re-installs all states from that version
+    -Upgrade          Identifies the latest version of CPC-WIN and will install that version
+    -Version          Displays the current version of CPC-WIN (if installed) then exits
+    -XUser            The Username for the X-Ways portal - Required to download and install X-Ways
+    -XPass            The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
+    -IncludeWsl       Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
+                      This option assumes you also want the full CPC-WIN suite, install that first, then WSL
+    -WslOnly          If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
 "@
 }
 
@@ -370,7 +383,7 @@ if ($WslOnly) {
         Write-Host "[-] Git not installed" -ForegroundColor Yellow
         Get-Git
     }
-    Invoke-WSLInstaller
+    Invoke-WSLInstaller $User $StandalonesPath
 } elseif ($Help -and $PSBoundParameters.Count -eq 1) {
     Show-CPCWINHelp
 } elseif ($Version -and $PSBoundParameters.Count -eq 1) {
@@ -384,8 +397,8 @@ if ($WslOnly) {
 # SIG # Begin signature block
 # MIIbvAYJKoZIhvcNAQcCoIIbrTCCG6kCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUeOROscT4/pNW3N9eQiwEZ6EX
-# qIWgghYnMIIDHDCCAgSgAwIBAgIQcv98vmCQa6hHnZia/ZugPTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrCOlaEFeiOjQ6+s3NMYl3VZB
+# RJWgghYnMIIDHDCCAgSgAwIBAgIQcv98vmCQa6hHnZia/ZugPTANBgkqhkiG9w0B
 # AQsFADAmMSQwIgYDVQQDDBtEaWdpdGFsIFNsZXV0aCBBdXRoZW50aWNvZGUwHhcN
 # MjIxMjA5MTQwNTI5WhcNMjMxMjA5MTQyNTI5WjAmMSQwIgYDVQQDDBtEaWdpdGFs
 # IFNsZXV0aCBBdXRoZW50aWNvZGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
@@ -507,27 +520,27 @@ if ($WslOnly) {
 # bGV1dGggQXV0aGVudGljb2RlAhBy/3y+YJBrqEedmJr9m6A9MAkGBSsOAwIaBQCg
 # eDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEE
 # AYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJ
-# BDEWBBSc4f7T/SQvWpEr3APm37ThwIL28jANBgkqhkiG9w0BAQEFAASCAQCOY5kg
-# pr+O+KqNmuDwkkWJSK+LpVNRMWq0phLXSdE0J63Cjgvtrvuf8BsQ9PKcvi4w19Nz
-# 0tGa89GMwucI0uZLe0l+9M05kg3pNty9b5hWufwJoui4VXdb9TkhiZH0uE2CxFOR
-# EP7A1Z7jrtNF2xMXisKONEhxQPdOxpvkKPMrMlCm+gC5BPBLE7gGNK3d4BVXzCKC
-# SsyWJfJqYlt2L0H8Nq0HiFRh0NqIjsDZFiO9wjWJESxEDTFGLdw4ceiY9MS/aqrO
-# JTEIdr22qNxORxvvz1cMm/1XUcuMzQA0B90mtODAVNy9RtTxWfaMa0IjJzHl8cCJ
-# hx/j6miOK9MF9MDWoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# BDEWBBRX7tiQve+fSBctKKH6pqk+cyrB8DANBgkqhkiG9w0BAQEFAASCAQBrGDxd
+# X9HoByNj0CALR3qmp6b7ChfwIRlJeOxk2CY66auJShZIdiUIyWkDOLYAr4CRCYiz
+# iWexUFrPEo5xQkS6ZwwJUh7ZqeS/yT4TKUJyEEae8PcBRzyCSu0ANKFQGFaWeDJa
+# BbjtL6cuOze/4yPX6LalKtACBPP5hkGhETYHwoMXzix7NU7+W1o4F/9Lztr039st
+# u+WBk+mMQ74eUuL/Lx9Gk+2JMRS7/7KK+/JwzmE3QwPfxUGMIToiGr7wb/TsiUuq
+# VkxqUHQ0WNxL0j0tjU0hznCvtG2278NdUpslo3Y4DgjzvxUxj1KXB9zwQd8nsbnn
+# 3xJDLQRGqYo1ulUnoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQDE1pckuU+jwqSj0pB4A9WjANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMTIxMjA0MTY0OVowLwYJ
-# KoZIhvcNAQkEMSIEIMW57ssXkX1Omi1zkUrpS0PJRjdAmvxF6az0dxsPIaUZMA0G
-# CSqGSIb3DQEBAQUABIICAF7DKNPlo5mf65UErIwu+nmjeEpEWA7TWVlQco2bJysl
-# XVimjImSFp+pqo44jqSEGgjqQhhSUWSFkPTZboagAviEEQcPPbqn907yjP+k2wIs
-# +verb1xZ+ny72KovF7eu1EEzxwBvNB6wKv0uN+/TlEYQrNHqh2tpEhABA2YqFhHx
-# COOh8ia4znDTU1nJUfWJaqs2yDcDGddUirfA5us/3zvqpqEuF+ofRrYwMVq+Y14e
-# bgQYVNe6aIAalrjIh8JmcYOFIxZzOb+IVO7YAkhpQ+iaWrtEFh3fi4OaMeUwKi1H
-# 4Fl8rAalinjAnr43PbMZWcsMJvYR1TTmD5N48EwmHYF7G4xoXtYJIcAL01f87+dU
-# 7M7hiJ6jbhWI81+mDTd5iKfEr0CTqRmc8tORmGTcPiS7rfVVMJqbHU4mdpCYWSch
-# JIOc8wxBIsLMKL7XRDAa8gdfKbSNn5xua2NYB03kU/d6CYz/mNdgpC1K0IUjxDeH
-# K1TGr+26ABXhO6CEefcReMrMq9JjOYL2bbxwcMZNMPIHcpq7sG3i8W7Qh5YnpigI
-# tvTDxNoNqZPmwNbBy6Ln8F2Q0R8qlIcrA0fwjAMqS+YLWiAJPZtg99NFT2k1PmXH
-# aiT+g7N1PY+s/lpyrhzDVzgviMXJfJY4lfQaGnEPO7p0lQQSGvoWRnyoL7qzjfDH
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMTIyNzE1MDU0NlowLwYJ
+# KoZIhvcNAQkEMSIEICw89YyXV8UvC2Lxuuv9rvvBJRM5+lDYYFH5AQrwte2bMA0G
+# CSqGSIb3DQEBAQUABIICAJbGV0RXYEW9AwpYD+naSwWMebvYVMfrxz2d/3Z8xW+n
+# 3KSj+VwxjlpZTVdUs6KTQFCHa2sJynRWUP/XLQDjwUA4QsA6t/wb0aqzG3DFwZDN
+# F57kFQ+ehAA8IbE0QpAvKL0ry5ho7Emu3ocQbjhZZtoPOl0+PcTrrJuVpHxZiFhn
+# jIX1tTA+4qeOFeV2bjfLXhSHuS9qwCR9BxYMXvEScIJjyLlyzZaOyah6llw4Mwyz
+# FHcoXV+uOTcdGT9CGhRNRcj+GzEumdZGQnE7OpigyXOKorGnbJoTgi3wiebrx7ce
+# uhxEaRzQzy8Sk/xrHJ0fQ3BDbdlYgrZD4+lwvCncip9yatAu96shs+aMNSYKeuAf
+# KPEnknqIyilvSIPHs+iUeQEewM0Xox6eHBwgjCdPMNVMjisJZehaiZP4mK1IqV4A
+# wcfB1FQcAgUEFALAds0jE0pxjYnljX2PfUFcLeloRCH7wi9vIxkqnxbY2hR/kA0z
+# tuS+Yn+apdM4jFz4U3UDwIA7uVifpk92ri5gcgp5lGuBW+J77Aq6BH+IZKRKkcci
+# arVDEinwmhAfmHbPygq/FJuIHUpD0snnB4oWo7YwzgmQiP+G1wHO3VQ0vP4LYZbz
+# CmYKza4jmRYXArBZC7YS3/iWZCN4EOmrp5zxocz30sLnfJdRfexBcFz/JHejjYs0
 # SIG # End signature block
