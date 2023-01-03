@@ -5,28 +5,33 @@
 {% else %}
   {% set home = "C:\\Users\\" + user %}
 {% endif %}
+{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+{% set START_MENU = PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs' %}
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set hash = 'c1bae838ab7759dbccac5fe44827f770bdaec4009c190e4edc218beb8f3d637c' %}
 {% set case_folders = ['Evidence', 'Export', 'Temp', 'Xways'] %}
 {% set portals_configs = ['portals.ptl','globalsettings.ptl'] %}
-{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set shortcuts = [('Acquisition and Analysis', ['FTK Imager','Active@ Disk Editor\Active@ Disk Editor','Arsenal Image Mounter','Autopsy\Autopsy 4.19.3','Magnet AXIOM\AXIOM Examine','Magnet AXIOM\AXIOM Process','gkape','Magnet ACQUIRE\Magnet ACQUIRE','Redline\Redline','Tableau\Tableau Imager\Tableau Imager','VeraCrypt 1.25.9\VeraCrypt','X-Ways']),
-                        ('Browsers', ['Firefox','Google Chrome','Google Earth Pro','Microsoft Edge']),
-                        ('Databases', ['ADOQuery','DataEdit','DB Browser (SQLCipher)','DB Browser (SQLite)','DBeaver Community\DBeaver','SDBExplorer','SQLiteQuery','SQLiteStudio\SQLiteStudio']),
-                        ('Document Viewers', ['Acrobat Reader','EZViewer','Notepad++','Sublime Text','Visual Studio Code\Visual Studio Code']),
-                        ('E-mail', ['EHB','BitRecover EML Viewer','Kernel Exchange EDB Viewer\Kernel Exchange EDB Viewer','Kernel OST Viewer\Kernel OST Viewer','Kernel Outlook PST Viewer\Kernel Outlook PST Viewer','MailView','SysTools Outlook PST Viewer\SysTools Outlook PST Viewer']),
-                        ('Log Parsers', ['EventFinder','EZViewer','LogParser-Studio','LogViewer2']),
-                        ('Programming', ['Python 3.10\IDLE (Python 3.10 64-bit)','Visual Studio Code\Visual Studio Code','Windows PowerShell\Windows PowerShell ISE']),
-                        ('Raw Parsers', ['Bulk Extractor 1.5.5\BEViewer with Bulk Extractor 1.5.5 (64-bit)','CyberChef','Digital Detective\DCode v5\DCode v5.5','HHD Hex Editor Neo\Hex Editor Neo','HEXEdit','HxD Hex Editor\HxD','JSONView','Passware\Encryption Analyzer 2023 v1\Passware Encryption Analyzer 2023 v1 (64-bit)','WinHex','XMLView']),
-                        ('Terminals', ['Windows PowerShell\Windows PowerShell ISE']),
-                        ('Utilities', ['Digital Detective\DCode v5\DCode v5.5','FastCopy','Glossary Generator','Hasher','IrfanView\IrfanView 64 4.60',"Nuix\\Nuix Evidence Mover\\Nuix Evidence Mover",'Rufus','USB Write Blocker','WindowGrid']),
-                        ('Windows Analysis', ['AutoRunner','JumpListExplorer','MFTBrowser','MFTExplorer','NirLauncher','NTFS Log Tracker','RegistryExplorer','RegRipper','SE','ShadowExplorer','ShellBagsExplorer','TimelineExplorer']),
-                        ('Write Blockers', ['Tableau\Tableau Firmware Update\Tableau Firmware Update','USB Write Blocker','CDSG\WriteBlocking Validation Utility\WriteBlocking Validation Utility'])
-                       ] %}
+                    ('Browsers', ['Firefox','Google Chrome','Google Earth Pro','Microsoft Edge']),
+                    ('Databases', ['ADOQuery','DataEdit','DB Browser (SQLCipher)','DB Browser (SQLite)','DBeaver Community\DBeaver','SDBExplorer','SQLiteQuery','SQLiteStudio\SQLiteStudio']),
+                    ('Document Viewers', ['Acrobat Reader','EZViewer','Notepad++','Sublime Text','Visual Studio Code\Visual Studio Code']),
+                    ('E-mail', ['EHB','BitRecover EML Viewer','Kernel Exchange EDB Viewer\Kernel Exchange EDB Viewer','Kernel OST Viewer\Kernel OST Viewer','Kernel Outlook PST Viewer\Kernel Outlook PST Viewer','MailView','SysTools Outlook PST Viewer\SysTools Outlook PST Viewer']),
+                    ('Log Parsers', ['EventFinder','EZViewer','LogParser-Studio','LogViewer2']),
+                    ('Programming', ['Python 3.10\IDLE (Python 3.10 64-bit)','Visual Studio Code\Visual Studio Code','Windows PowerShell\Windows PowerShell ISE']),
+                    ('Raw Parsers', ['Bulk Extractor 1.5.5\BEViewer with Bulk Extractor 1.5.5 (64-bit)','CyberChef','Digital Detective\DCode v5\DCode v5.5','HHD Hex Editor Neo\Hex Editor Neo','HEXEdit','HxD Hex Editor\HxD','JSONView','Passware\Encryption Analyzer 2023 v1\Passware Encryption Analyzer 2023 v1 (64-bit)','WinHex','XMLView']),
+                    ('Terminals', ['Windows PowerShell\Windows PowerShell ISE','WSL']),
+                    ('Utilities', ['Digital Detective\DCode v5\DCode v5.5','FastCopy','Glossary Generator','Hasher','IrfanView\IrfanView 64 4.60',"Nuix\\Nuix Evidence Mover\\Nuix Evidence Mover",'Rufus','USB Write Blocker','WindowGrid']),
+                    ('Windows Analysis', ['AutoRunner','JumpListExplorer','MFTBrowser','MFTExplorer','NirLauncher','NTFS Log Tracker','RegistryExplorer','RegRipper','SE','ShadowExplorer','ShellBagsExplorer','TimelineExplorer']),
+                    ('Write Blockers', ['Tableau\Tableau Firmware Update\Tableau Firmware Update','USB Write Blocker','CDSG\WriteBlocking Validation Utility\WriteBlocking Validation Utility'])
+                   ] %}
 
 include:
   - cpcwin.packages.portals
   - cpcwin.config.user
+  - cpcwin.standalones
+  - cpcwin.packages
+  - cpcwin.python3-tools
+  - cpcwin.installers
 
 cpcwin-theme-wallpaper-source:
   file.managed:
@@ -92,47 +97,14 @@ shortcut-{{ folder[0] }}:
 shortcut-{{ folder[0] }}-{{ shortcut }}:
   file.copy:
     - name: '{{ inpath }}\Portals\{{ folder[0] }}\'
-    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\{{ shortcut }}'
+    - source: '{{ START_MENU }}\{{ shortcut }}'
     - preserve: True
     - subdir: True
+    - onlyif:
+      - fun: file.file_exists
+        path: '{{ START_MENU }}\{{ shortcut }}'
 {% endfor %}
 {% endfor %}
-
-{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\X-Ways.lnk') %}
-xways-shortcut-copy:
-  file.copy:
-    - name: '{{ inpath }}\Portals\Acquisition and Analysis\X-Ways.lnk'
-    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\X-Ways.lnk'
-    - preserve: True
-
-{% else %}
-no-xways-shortcut-found:
-  test.nop
-{% endif %}
-
-{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\WinHex.lnk') %}
-winhex-shortcut-copy:
-  file.copy:
-    - name: '{{ inpath }}\Portals\Raw Parsers and Decoders\WinHex.lnk'
-    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WinHex.lnk'
-    - preserve: True
-
-{% else %}
-no-winhex-shortcut-found:
-  test.nop
-{% endif %}
-
-{% if salt['file.file_exists'](PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs\WSL.lnk') %}
-wsl-shortcut-copy:
-  file.copy:
-    - name: '{{ inpath }}\Portals\Terminals\WSL.lnk'
-    - source: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WSL.lnk'
-    - preserve: True
-
-{% else %}
-no-wsl-shortcut-found:
-  test.nop
-{% endif %}
 
 portals-end-process:
   cmd.run:

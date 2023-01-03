@@ -13,6 +13,14 @@ start-layout-file:
     - win_inheritance: True
     - makedirs: True
 
+start-layout-replace-placeholder:
+  file.replace:
+    - name: '{{ inpath }}\CPC-WIN-StartLayout.xml'
+    - pattern: PLACEHOLDER_PATH
+    - repl: {{ inpath | regex_escape }}
+    - require:
+      - file: start-layout-file
+
 start-layout-enable-gpo:
   lgpo.set:
     - user_policy:
