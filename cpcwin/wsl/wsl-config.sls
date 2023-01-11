@@ -13,7 +13,7 @@ wsl-config-version:
     - require:
       - sls: cpcwin.wsl.wsl2-update
 
-{% if salt['file.file_exists']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar') and salt['file.check_hash']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar', hash)%}
+{% if salt['file.file_exists']('C:\\salt\\tempdownload\\CPC-WIN-20.04.tar') and salt['file.check_hash']('C:\\salt\\tempdownload\\CPC-WIN-20.04.tar', hash)%}
 
 wsl-template-already-downloaded:
   test.nop
@@ -22,7 +22,7 @@ wsl-template-already-downloaded:
 
 wsl-get-template:
   file.managed:
-    - name: 'C:\salt\tempdownload\WIN-FOR-20.04.tar'
+    - name: 'C:\salt\tempdownload\CPC-WIN-20.04.tar'
     - source: https://sourceforge.net/projects/winfor/files/wsl/WIN-FOR-20.04.tar/download
     - source_hash: sha256={{ hash }}
     - makedirs: True

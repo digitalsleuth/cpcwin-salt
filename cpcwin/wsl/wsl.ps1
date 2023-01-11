@@ -5,7 +5,7 @@ if (-Not $runningUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administ
     Write-Host "[!] Not running as administrator, please re-run this script as Administrator" -ForegroundColor Red
     Read-Host "Press any key to continue"
 }
-Write-Host "[+] Downloading WIN-FOR template and installing SIFT & REMnux" -ForegroundColor Green
+Write-Host "[+] Downloading CPC-WIN template and installing SIFT & REMnux" -ForegroundColor Green
 Start-Process -Wait -FilePath $filePath -ArgumentList ($saltArgs) | Out-Null
 if (-Not (Test-Path $wslLogFile)) {
     $wslSetupResults=$wslSetupFailures=$wslResults=$wslFailures=$errors=$null
