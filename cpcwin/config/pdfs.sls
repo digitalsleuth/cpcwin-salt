@@ -88,7 +88,7 @@ set pdfs = [
     "id": "cpcwin-tool-list",
     "filename": "CPC-WIN-Tool-List.pdf",
     "source": "salt://cpcwin/files/CPC-WIN-Tool-List.pdf",
-    "hash": "687a6afa3215ad3a262ff6d13a0dda0405826f5f9a47c75c0ec38f87c48b7fdc"
+    "hash": "853d1506e7257b9013cb74e4014b5992bb26f0cfd00b50fd84d6e9173de33949"
   },
 
 ]
