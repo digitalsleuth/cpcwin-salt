@@ -84,13 +84,6 @@ set pdfs = [
     "source": "https://assets.contentstack.io/v3/assets/blt36c2e63521272fdc/blt4698e96e2d9cf51d/SQlite_Cheat_Sheet.pdf",
     "hash": "954d62787abe3bad95f59e2d671eac202dea2607ed5cdb757dbbb688b873f679"
   },
-  {
-    "id": "cpcwin-tool-list",
-    "filename": "CPC-WIN-Tool-List.pdf",
-    "source": "salt://cpcwin/files/CPC-WIN-Tool-List.pdf",
-    "hash": "185be844542d2d0fa964943cadc627eb73b18f6134495b36f2d3ea3aa0feb4d6"
-  },
-
 ]
 -%}
 
@@ -104,6 +97,14 @@ cpcwin-pdf-{{ pdf.id }}:
     - show_changes: False
 {% endfor %}
 
+cpcwin-pdf-tool-list:
+  file.managed:
+    - name: '{{ inpath }}\references\CPC-WIN-Tool-List.pdf'
+    - source: salt://cpcwin/files/CPC-WIN-Tool-List.pdf
+    - skip_verify: True
+    - makedirs: True
+    - show_changes: False
+
 cpcwin-tool-list-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\CPC-WIN-Tool-List.lnk'
@@ -111,3 +112,5 @@ cpcwin-tool-list-shortcut:
     - force: True
     - working_dir: '{{ inpath }}\references\'
     - makedirs: True
+    - require:
+      - file: cpcwin-pdf-tool-list
