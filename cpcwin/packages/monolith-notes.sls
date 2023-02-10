@@ -8,7 +8,7 @@
 # Notes: 
 
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
-{% set PROGRAMFILES = "%ProgramFiles%" %}
+{% set PROGRAMFILES = salt['environ.get']('PROGRAMFILES') %}
 
 monolith-notes:
   pkg.installed
