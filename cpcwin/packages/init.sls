@@ -44,6 +44,7 @@ include:
   - cpcwin.packages.ms-powertoys
   - cpcwin.packages.vscode
   - cpcwin.packages.sqlitestudio
+  - cpcwin.packages.monolith-notes
 
 cpcwin-packages:
   test.nop:
@@ -93,3 +94,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.ms-powertoys
       - sls: cpcwin.packages.vscode
       - sls: cpcwin.packages.sqlitestudio
+      - sls: cpcwin.packages.monolith-notes
