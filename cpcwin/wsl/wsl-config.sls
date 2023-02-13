@@ -1,6 +1,8 @@
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+{% set START_MENU = PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs' %}
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set hash = '4ed521a6f727c2a5352b2d28e28cfd8639e9c8cbc1b7a35aa7e003464c4fc139' %}
+{% set castver = '0.14.0' %}
 
 include:
   - cpcwin.wsl.wsl2-update
@@ -42,62 +44,60 @@ wsl-import-template:
     - require:
       - file: wsl-make-install-directory
 
-wsl-get-sift:
+wsl-get-cast:
   cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S wget -O /usr/local/bin/sift https://github.com/teamdfir/sift-cli/releases/download/v1.14.0-rc1/sift-cli-linux'
+    - name: 'wsl echo forensics | wsl sudo -S wget -O /tmp/cast_v{{ castver }}_linux_amd64.deb https://github.com/ekristen/cast/releases/download/v{{ castver }}/cast_v{{ castver }}_linux_amd64.deb'
     - shell: cmd
     - require:
       - cmd: wsl-import-template
 
-wsl-chmod-sift:
+wsl-install-cast:
   cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S chmod +x /usr/local/bin/sift'
+    - name: 'wsl echo forensics | wsl sudo -S apt-get install -y /tmp/cast_v{{ castver }}_linux_amd64.deb'
     - shell: cmd
     - require:
-      - cmd: wsl-get-sift
+      - cmd: wsl-get-cast
 
-wsl-run-sift:
+wsl-install-sift:
   cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S sift install --mode server --user forensics'
+    - name: 'wsl echo forensics | wsl sudo -S cast install --mode server --user forensics sift'
     - shell: cmd
     - require:
-      - cmd: wsl-chmod-sift
+      - cmd: wsl-install-cast
 
-wsl-get-remnux:
+wsl-install-remnux:
   cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S wget -O /usr/local/bin/remnux https://github.com/remnux/remnux-cli/releases/download/v1.3.4/remnux-cli-linux'
+    - name: 'wsl echo forensics | wsl sudo -S cast install --mode addon --user forensics remnux'
     - shell: cmd
     - require:
-      - cmd: wsl-run-sift
+      - cmd: wsl-install-sift
 
-wsl-chmod-remnux:
-  cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S chmod +x /usr/local/bin/remnux'
-    - shell: cmd
-    - require:
-      - cmd: wsl-get-remnux
-
-wsl-fix-salt-python-importlib:
-  cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S python3 -m pip install "importlib-metadata<5.0.0"'
-    - shell: cmd
-    - require:
-      - cmd: wsl-chmod-remnux
-
-wsl-run-remnux:
-  cmd.run:
-    - name: 'wsl echo forensics | wsl sudo -S remnux install --mode addon --user forensics'
-    - shell: cmd
-    - require:
-      - cmd: wsl-chmod-remnux
-
-cpcwin-wsl-shortcut:
+wsl-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\WSL.lnk'
     - target: 'C:\Windows\System32\wsl.exe'
     - force: True
     - working_dir: 'C:\Windows\System32\'
     - makedirs: True
+    - require:
+      - cmd: wsl-config-version
+      - file: wsl-make-install-directory
+      - cmd: wsl-import-template
+
+wsl-portals-shortcut:
+  file.copy:
+    - name: '{{ inpath }}\Portals\Terminals\'
+    - source: '{{ START_MENU }}\WSL.lnk'
+    - preserve: True
+    - subdir: True
+    - require:
+      - cmd: wsl-config-version
+      - file: wsl-make-install-directory
+      - cmd: wsl-import-template
+
+wsl-delete-template:
+  file.absent:
+    - name: 'C:\salt'
     - require:
       - cmd: wsl-config-version
       - file: wsl-make-install-directory

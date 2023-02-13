@@ -4,16 +4,20 @@ release:
     repo: cpcwin-salt
 manifest:
   version: 2
-  base: ""
+  name: cpcwin
+  base_dir: cpcwin
   modes:
     - name: addon
       state: cpcwin.addon
-      default: true
     - name: dedicated
       state: cpcwin.dedicated
-      default: false
+      default: true
   supported_os:
     - id: windows
       release: 10
     - id: windows
       release: 11
+  saltstack:
+    pillars:
+      cpcwin_user_template: "{{ .User }}"
+      inpath_template: '{{ default "C:\standalones" .inpath }}'

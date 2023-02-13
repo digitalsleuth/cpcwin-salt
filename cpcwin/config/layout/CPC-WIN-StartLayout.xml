@@ -5,7 +5,7 @@
       <defaultlayout:StartLayout GroupCellWidth="6">
         <start:Group Name="Acquisition and Analysis">
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Magnet ACQUIRE\Acquire.exe" />
-          <start:DesktopApplicationTile Size="1x1" Column="5" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\Autopsy-4.19.3\bin\autopsy64.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="5" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\Autopsy-4.20.0\bin\autopsy64.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="0" DesktopApplicationID="PLACEHOLDER_PATH\arsenal\ArsenalImageMounter.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="1" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\LSoft Technologies\Active@ Disk Editor\DiskEditor.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\AccessData\FTK Imager\FTK Imager.exe" />
