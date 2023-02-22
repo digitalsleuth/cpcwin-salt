@@ -38,4 +38,4 @@ monolith-desktop-shortcut:
     - name: '{{ home }}\Desktop\Monolith Notes.lnk'
     - require:
       - pkg: monolith-notes
-      - user: user-{{ user }}
+      - user: cpcwin-user-{{ user }}

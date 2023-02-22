@@ -41,6 +41,7 @@ include:
   - cpcwin.standalones.mftbrowser
   - cpcwin.standalones.shadowexplorer
   - cpcwin.standalones.ntfs-log-tracker
+  - cpcwin.standalones.mimikatz
 
 cpcwin-standalones:
   test.nop:
@@ -87,3 +88,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.mftbrowser
       - sls: cpcwin.standalones.shadowexplorer
       - sls: cpcwin.standalones.ntfs-log-tracker
+      - sls: cpcwin.standalones.mimikatz

@@ -19,7 +19,7 @@ shadow-explorer-download:
 
 shadow-explorer-extract:
   archive.extracted:
-    - name: '{{ inpath }}\shadowexplorer\'
+    - name: '{{ inpath }}\'
     - source: 'C:\salt\tempdownload\ShadowExplorer-0.9-portable.zip'
     - enforce_toplevel: False
     - require:
@@ -34,10 +34,11 @@ shadow-explorer-folder-rename:
     - require:
       - archive: shadow-explorer-extract
 
-cpcwin-shadow-explorer-shortcut:
+shadow-explorer-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\ShadowExplorer.lnk'
     - target: '{{ inpath }}\shadowexplorer\ShadowExplorerPortable.exe'
+    - icon_location: '{{ inpath }}\shadowexplorer\ShadowExplorerPortable.exe'
     - force: True
     - working_dir: '{{ inpath }}\shadowexplorer\'
     - makedirs: True
