@@ -68,7 +68,7 @@ ShortDesc=Tool for decoding time stamps into different formats.
 LongDesc=
 
 [Software6]
-exe=PLACEHOLDER_PATH\ExifTool-KML-Creator\EXIF_Tool.bat
+exe=PLACEHOLDER_PATH\ExifTool-KML-Creator\exif_kml.bat
 url=https://www.exiftool.org/
 group=0
 Name=KMLcreator

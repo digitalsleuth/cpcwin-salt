@@ -30,7 +30,7 @@ include:
   - cpcwin.standalones.mitec
   - cpcwin.standalones.ntcore
   - cpcwin.standalones.exiftool
-  - cpcwin.standalones.exiftoolgui
+#  - cpcwin.standalones.exiftoolgui  Delayed until graphical issues are resolved
   - cpcwin.standalones.glossary-generator
   - cpcwin.standalones.hex2guid
   - cpcwin.standalones.usbdetective
@@ -77,7 +77,7 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.mitec
       - sls: cpcwin.standalones.ntcore
       - sls: cpcwin.standalones.exiftool
-      - sls: cpcwin.standalones.exiftoolgui
+#      - sls: cpcwin.standalones.exiftoolgui  Delayed until graphical issues are resolved
       - sls: cpcwin.standalones.glossary-generator
       - sls: cpcwin.standalones.hex2guid
       - sls: cpcwin.standalones.usbdetective

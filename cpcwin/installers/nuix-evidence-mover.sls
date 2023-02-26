@@ -35,5 +35,7 @@ nuix-evidence-mover-install:
 nuix-evidence-mover-shortcut:
   file.absent:
     - name: 'C:\Users\Public\Desktop\Nuix Evidence Mover.lnk'
+    - require:
+      - cmd: nuix-evidence-mover-install
     - watch:
       - cmd: nuix-evidence-mover-install

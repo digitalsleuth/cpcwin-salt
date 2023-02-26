@@ -12,6 +12,8 @@ google-earth-pro:
 
 remove-google-earth-icon:
   file.absent:
-    - name: 'C:\Users\Public\Desktop\Google Earth Pro.lnk'
+    - names:
+      - 'C:\Users\Public\Public Desktop\Google Earth Pro.lnk'
+      - 'C:\Users\Public\Desktop\Google Earth Pro.lnk'
     - require:
       - pkg: google-earth-pro

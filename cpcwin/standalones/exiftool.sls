@@ -42,9 +42,17 @@ exiftool-kml-fmt:
 
 exiftool-kml-batch:
   file.managed:
-    - name: '{{ inpath }}\exiftool\EXIF_Tool.bat'
-    - source: salt://cpcwin/files/EXIF_Tool.bat
+    - name: '{{ inpath }}\exiftool\exif_kml.bat'
+    - source: salt://cpcwin/files/exif_kml.bat
     - makedirs: True
+
+exiftool-kml-batch-placeholder:
+  file.replace:
+    - name: '{{ inpath }}\exiftool\exif_kml.bat'
+    - pattern: PLACEHOLDER_PATH
+    - repl: {{ inpath | regex_escape }}
+    - require:
+      - file: exiftool-kml-batch
 
 exiftool-env-vars:
   win_path.exists:
