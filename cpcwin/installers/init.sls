@@ -8,6 +8,7 @@ include:
   - cpcwin.installers.nuix-evidence-mover
   - cpcwin.installers.fastcopy
   - cpcwin.installers.jre8
+  - cpcwin.installers.mobaxterm
   
 cpcwin-installers:
   test.nop:
@@ -21,3 +22,4 @@ cpcwin-installers:
       - sls: cpcwin.installers.nuix-evidence-mover
       - sls: cpcwin.installers.fastcopy
       - sls: cpcwin.installers.jre8
+      - sls: cpcwin.installers.mobaxterm
