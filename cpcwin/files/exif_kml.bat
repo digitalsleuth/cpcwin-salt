@@ -30,7 +30,7 @@ echo %orig%.KML exists at %output:"=%
 :unique
 echo Output will be "%output:"=%\%filename%.KML"
 :: Run EXIFTool Command
-PLACEHOLDER_PATH\exiftool\exiftool -n -r -q -p PLACEHOLDER_PATH\exiftool\kml.fmt %output%>%output%\"%filename%.KML"
+PLACEHOLDER_PATH\exiftool\exiftool -ee3 -m -n -r -q -p PLACEHOLDER_PATH\exiftool\kml.fmt %output%>%output%\"%filename%.KML"
 echo.
 set incr=0
 pause

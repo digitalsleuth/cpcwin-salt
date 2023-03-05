@@ -11,10 +11,11 @@
 # Revisions:    2010/02/05 - P. Harvey created
 #               2013/02/05 - PH Fixed camera icon to work with new Google Earth
 #               2017/02/02 - PH Organize into folders based on file directory
-#               2018/01/03 - PH Added IF to be sure position exists
+#               2018/01/04 - PH Added IF to be sure position exists
+#               2020/01/11 - F. Kotov Limited image preview size to 500px
 #
 # Notes:     1) Input files must contain GPSLatitude and GPSLongitude.
-#            2) Add the -ee option to extract the full track from video files.
+#            2) Add the -ee3 option to extract the full track from video files.
 #            3) For Google Earth to be able to find the images, the input
 #               images must be specified using relative paths, and "out.kml"
 #               must stay in the same directory as where the command was run.
@@ -23,6 +24,9 @@
 #               extension is used.
 #            5) The -fileOrder option may be used to control the order of the
 #               generated placemarks when processing multiple files.
+#            6) The "0" in the coordinates line may be changed to "$gpsaltitude#"
+#               and the altitudeMode may be changed to "absolute" to store
+#               altitude information if it exists in the track log.
 #------------------------------------------------------------------------------
 #[HEAD]<?xml version="1.0" encoding="UTF-8"?>
 #[HEAD]<kml xmlns="http://earth.google.com/kml/2.0">
@@ -38,20 +42,19 @@
 #[HEAD]      </IconStyle>
 #[HEAD]    </Style>
 #[SECT]    <Folder>
-#[SECT]      <name>$directory</name>
+#[SECT]      <name>$main:directory</name>
 #[SECT]      <open>0</open>
 #[IF]  $gpslatitude $gpslongitude
 #[BODY]      <Placemark>
-#[BODY]        <description><![CDATA[<br/><table><tr><td>
-#[BODY]        <img src='$directory/$filename'
-#[BODY]          width='$imagewidth' height='$imageheight'>
-#[BODY]        </td></tr></table>]]></description>
+#[BODY]        <description><![CDATA[<img src='file:///$main:directory/$main:filename' style='max-width:500px;max-height:500px;'> ]]>
+#[BODY]          Date $gpsdatetime#, Speed $gpsspeed# km/h
+#[BODY]        </description>
 #[BODY]        <Snippet/>
 #[BODY]        <name>$filename</name>
 #[BODY]        <styleUrl>#Photo</styleUrl>
 #[BODY]        <Point>
 #[BODY]          <altitudeMode>clampedToGround</altitudeMode>
-#[BODY]          <coordinates>$gpslongitude#,$gpslatitude#,0</coordinates>
+#[BODY]          <coordinates>$gpslongitude#,$gpslatitude#,$gpsaltitude#</coordinates>
 #[BODY]        </Point>
 #[BODY]      </Placemark>
 #[ENDS]    </Folder>

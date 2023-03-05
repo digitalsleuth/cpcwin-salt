@@ -4,12 +4,12 @@
 # Category: Raw Parsers / Decoders
 # Author: Corey Forman
 # License: GNU General Public License v3.0 (https://github.com/digitalsleuth/smi-parser/blob/main/LICENSE)
-# Version: 1.0.0
+# Version: 1.1.0
 # Notes:
 
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
-{% set version = '1.0.0' %}
-{% set hash = '90bbc95e910b0d60839a764ba40820abc6fff766e9e0c315ea0534a6cb900d42' %}
+{% set version = '1.1.0' %}
+{% set hash = 'bc09ddee32a418e412a3f075fedd9cdc5054c31e7b4459f6f12f645eeefa5245' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 smi-parser-download:
