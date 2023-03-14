@@ -45,6 +45,7 @@ include:
   - cpcwin.packages.vscode
   - cpcwin.packages.sqlitestudio
   - cpcwin.packages.monolith-notes
+  - cpcwin.packages.nuix-evidence-mover
 
 cpcwin-packages:
   test.nop:
@@ -95,3 +96,4 @@ cpcwin-packages:
       - sls: cpcwin.packages.vscode
       - sls: cpcwin.packages.sqlitestudio
       - sls: cpcwin.packages.monolith-notes
+      - sls: cpcwin.packages.nuix-evidence-mover
