@@ -17,6 +17,7 @@ include:
   - cpcwin.python3-tools.time-decode
   - cpcwin.python3-tools.amcache
   - cpcwin.python3-tools.usn-journal-parser
+  - cpcwin.python3-tools.pdf-parser
 
 cpcwin-python3-tools:
   test.nop:
@@ -39,6 +40,7 @@ cpcwin-python3-tools:
       - sls: cpcwin.python3-tools.time-decode
       - sls: cpcwin.python3-tools.amcache
       - sls: cpcwin.python3-tools.usn-journal-parser
+      - sls: cpcwin.python3-tools.pdf-parser
 
 python3-filetype-association:
   cmd.run:

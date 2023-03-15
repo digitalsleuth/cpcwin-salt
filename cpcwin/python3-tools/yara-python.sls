@@ -9,9 +9,11 @@
 
 include:
   - cpcwin.packages.ms-vcpp-2015-build-tools
+  - cpcwin.packages.python3
 
 yara-python:
   pip.installed:
     - bin_env: 'C:\Program Files\Python310\python.exe'
     - require:
       - sls: cpcwin.packages.ms-vcpp-2015-build-tools
+      - sls: cpcwin.packages.python3
