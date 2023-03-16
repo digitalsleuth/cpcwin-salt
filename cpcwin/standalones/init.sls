@@ -43,6 +43,7 @@ include:
   - cpcwin.standalones.ntfs-log-tracker
   - cpcwin.standalones.mimikatz
   - cpcwin.standalones.magnet-response
+  - cpcwin.standalones.hayabusa
 
 cpcwin-standalones:
   test.nop:
@@ -91,3 +92,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.ntfs-log-tracker
       - sls: cpcwin.standalones.mimikatz
       - sls: cpcwin.standalones.magnet-response
+      - sls: cpcwin.standalones.hayabusa
