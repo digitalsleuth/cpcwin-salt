@@ -42,6 +42,7 @@ include:
   - cpcwin.standalones.shadowexplorer
   - cpcwin.standalones.ntfs-log-tracker
   - cpcwin.standalones.mimikatz
+  - cpcwin.standalones.magnet-response
 
 cpcwin-standalones:
   test.nop:
@@ -89,3 +90,4 @@ cpcwin-standalones:
       - sls: cpcwin.standalones.shadowexplorer
       - sls: cpcwin.standalones.ntfs-log-tracker
       - sls: cpcwin.standalones.mimikatz
+      - sls: cpcwin.standalones.magnet-response
