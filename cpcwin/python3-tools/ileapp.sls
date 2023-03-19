@@ -13,6 +13,7 @@
 include:
   - cpcwin.packages.python3
   - cpcwin.packages.git
+  - cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-ileapp-source:
   git.latest:
@@ -32,6 +33,7 @@ cpcwin-python3-ileapp-requirements:
     - require:
       - git: cpcwin-python3-ileapp-source
       - sls: cpcwin.packages.python3
+      - sls: cpcwin.packages.ms-vcpp-2015-build-tools
 
 cpcwin-python3-ileapp-header:
   file.prepend:
