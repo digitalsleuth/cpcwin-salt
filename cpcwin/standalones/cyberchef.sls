@@ -4,12 +4,12 @@
 # Category: Raw Parsers / Decoders
 # Author: GCHQ
 # License: Apache License v2.0 (https://github.com/gchq/CyberChef/blob/master/LICENSE)
-# Version: 9.54.0
+# Version: 10.0.1
 # Notes: 
 
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
-{% set version = '9.54.0' %}
-{% set hash = 'bfdc7232666a91df84dd41efd03052497eeae2140fc73240f58bcea939f89887' %}
+{% set version = '10.0.1' %}
+{% set hash = 'd998a6bbf25092d0a681f66c13c63bd3b858a2b0b97c33446524955acd8fc9da' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
