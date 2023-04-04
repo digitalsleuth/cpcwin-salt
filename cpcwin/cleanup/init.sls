@@ -13,7 +13,9 @@ include:
 
 cleanup-restart-explorer:
   cmd.run:
-    - name: 'Stop-Process -ProcessName "explorer"'
+    - names:
+      - 'Stop-Process -ProcessName "explorer"'
+      - 'start explorer'
     - shell: powershell
 
 cleanup-delete-salt-temp-files:
@@ -36,4 +38,4 @@ disk-cleanup:
 
 clear-salt-cache:
   cmd.run:
-    - name: 'salt-call --local saltutil.clear_cache'
+    - name: '"C:\Program Files\Salt Project\Salt\salt-call.bat" --local saltutil.clear_cache'
