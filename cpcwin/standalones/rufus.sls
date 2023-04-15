@@ -4,12 +4,12 @@
 # Category: Utilities
 # Author: Pete Batard
 # License: GNU General Public License v3 - https://github.com/pbatard/rufus/blob/master/LICENSE.txt
-# Version: 3.21
+# Version: 3.22
 # Notes:
 
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
-{% set version = '3.21' %}
-{% set hash = 'D0554F1FC47407D678A4D8EACE607272013C475033B636BFB1824ED6B1A22E36' %}
+{% set version = '3.22' %}
+{% set hash = 'ac2a1743bbfc19268c36280b50a003366d41854863d4808099cd87f77fa5f433' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 rufus-download:
