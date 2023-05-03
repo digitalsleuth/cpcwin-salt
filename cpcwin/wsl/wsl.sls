@@ -8,6 +8,7 @@
 # Notes: 
 
 {% set user = salt['pillar.get']('cpcwin_user', 'user') %}
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 
 include:
   - cpcwin.config.user

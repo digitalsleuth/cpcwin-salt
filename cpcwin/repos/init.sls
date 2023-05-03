@@ -29,7 +29,7 @@ cpcwin-repos-add-3:
 
 cpcwin-repos-update:
   cmd.run:
-    - name: '"C:\Program Files\Salt Project\Salt\salt-call.bat" --local winrepo.update_git_repos && "C:\Program Files\Salt Projects\Salt\salt-call.bat" --local pkg.refresh_db'
+    - name: '"C:\Program Files\Salt Project\Salt\salt-call.bat" --local winrepo.update_git_repos && "C:\Program Files\Salt Project\Salt\salt-call.bat" --local pkg.refresh_db'
     - require:
       - file: cpcwin-repos-add-1
       - file: cpcwin-repos-add-2
