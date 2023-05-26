@@ -1,3 +1,9 @@
+# PROJECT ON PAUSE
+I originally started the [WinFOR Project](https://github.com/digitalsleuth/win-for) first, then spun off this project separately for another group of people.
+However, recently I've decided to merge the form and functionality of the separated projects back into WinFOR as a separate "theme".
+
+You can proceed to the WinFOR repo to download the new Customizer, which will allow you to select the tools and theme with more granularity, and install them automatically.
+
 # CPC-WIN Salt States
 Customized CPC Windows Forensics Environment Salt States
 
